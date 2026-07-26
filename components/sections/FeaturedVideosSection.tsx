@@ -72,7 +72,7 @@ export const FeaturedVideosSection: React.FC<FeaturedVideosSectionProps> = ({
   return (
     <section
       id="featured-videos"
-      className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-b from-[#FFFDF7] via-[#FFF9EB] to-[#FFFDF7] overflow-hidden"
+      className="relative py-8 md:py-12 lg:py-16 bg-gradient-to-b from-[#FFFDF7] via-[#FFF9EB] to-[#FFFDF7] overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading - Centered */}

@@ -74,7 +74,7 @@ export const PlaylistsSection: React.FC<PlaylistsSectionProps> = ({
   };
 
   return (
-    <section id="playlists" className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-[#FFFDF7] overflow-hidden">
+    <section id="playlists" className="relative py-8  md:py-12 lg:py-16 bg-[#FFFDF7] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16">
@@ -97,9 +97,8 @@ export const PlaylistsSection: React.FC<PlaylistsSectionProps> = ({
             <div
               key={playlist.title}
               onClick={() => handlePlaylistClick(playlist)}
-              className={`group relative flex flex-col rounded-3xl bg-white border-2 border-zinc-200 shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#3B82F6] ${
-                idx === 0 ? "sm:col-span-2 lg:col-span-2" : ""
-              }`}
+              className={`group relative flex flex-col rounded-3xl bg-white border-2 border-zinc-200 shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#3B82F6] ${idx === 0 ? "sm:col-span-2 lg:col-span-2" : ""
+                }`}
             >
               {/* Cover Placeholder */}
               <div className="relative aspect-video w-full bg-zinc-900">

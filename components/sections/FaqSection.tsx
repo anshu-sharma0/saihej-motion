@@ -39,7 +39,7 @@ export const FaqSection: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-[#FFFDF7] overflow-hidden">
+    <section id="faq" className="relative py-8  md:py-12 lg:py-16 bg-[#FFFDF7] overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16">
@@ -48,7 +48,7 @@ export const FaqSection: React.FC = () => {
             <span>Frequently Asked Questions</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#1F2937] tracking-tight leading-tight">
-            Got Questions? <span className="text-[#FF4D4D]">We&apos;ve Got</span> Answers!
+            Got Questions? <br /> <span className="text-[#FF4D4D]">We&apos;ve Got</span> Answers!
           </h2>
           <p className="mt-4 text-sm sm:text-base md:text-lg lg:text-xl text-zinc-600 font-medium leading-relaxed">
             Everything parents want to know about Saihej Motion, our 4K 3D animation,

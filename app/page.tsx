@@ -75,7 +75,7 @@ export default function Home() {
         /> */}
 
         {/* Curated Playlists & Series Section */}
-        <PlaylistsSection onOpenVideo={handleOpenModal} />
+        {/* <PlaylistsSection onOpenVideo={handleOpenModal} /> */}
 
         {/* Why Parents Love Us Section (8 large cards) */}
         <WhyParentsLoveUsSection />
