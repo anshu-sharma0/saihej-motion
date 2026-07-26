@@ -62,52 +62,52 @@ export const TrustSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative py-16 md:py-24 bg-[#FFFDF7] overflow-hidden">
+    <section className="relative py-14 sm:py-16 md:py-20 lg:py-24 xl:py-28 bg-[#FFFDF7] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16">
           <div className="inline-flex items-center gap-2 rounded-full bg-[#FF4D4D]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#FF4D4D] mb-3">
             <CheckCircle2 className="h-4 w-4" />
             <span>Why Parents &amp; Families Trust Us</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#1F2937] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#1F2937] tracking-tight leading-tight">
             Designed for <span className="text-[#3B82F6]">Safe</span>,{" "}
             <span className="text-[#FF4D4D]">Joyful</span> &amp;{" "}
             <span className="text-[#22C55E]">Educational</span> Screen Time
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-zinc-600 font-medium">
+          <p className="mt-4 text-sm sm:text-base md:text-lg lg:text-xl text-zinc-600 font-medium leading-relaxed">
             We combine high-end 3D animation with early childhood development principles
             so your toddlers learn while having fun!
           </p>
         </div>
 
         {/* Premium Colourful Trust Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 xl:gap-10">
           {trustItems.map((item, idx) => {
             const IconComponent = item.icon;
             return (
               <div
                 key={item.title}
-                className={`group relative flex flex-col rounded-3xl bg-white p-7 border-2 ${item.borderColor} shadow-lg transition-all duration-300 card-hover-glow`}
+                className={`group relative flex flex-col rounded-3xl bg-white p-5 sm:p-6 lg:p-7 xl:p-8 border-2 ${item.borderColor} shadow-lg transition-all duration-300 card-hover-glow`}
               >
                 {/* Checkmark badge */}
-                <div className="absolute top-6 right-6 flex h-8 w-8 items-center justify-center rounded-full bg-[#FFFDF7] shadow-sm border border-zinc-200">
+                <div className="absolute top-5 right-5 sm:top-6 sm:right-6 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-[#FFFDF7] shadow-sm border border-zinc-200">
                   <span className="text-xs font-black text-[#22C55E]">✓</span>
                 </div>
-                <div className="flex items-center mb-4 gap-4">
+                <div className="flex items-center mb-4 gap-3 sm:gap-4">
                   {/* Icon wrapper */}
                   <div
-                    className={`flex h-14 w-14 items-center justify-center rounded-2xl ${item.bgColor} ${item.textColor} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}
+                    className={`flex h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 items-center justify-center rounded-2xl ${item.bgColor} ${item.textColor} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}
                   >
-                    <IconComponent className="h-7 w-7" />
+                    <IconComponent className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
                   </div>
 
-                  <h3 className="text-xl font-extrabold text-[#1F2937] group-hover:text-[#FF4D4D] transition-colors">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold text-[#1F2937] group-hover:text-[#FF4D4D] transition-colors">
                     {item.title}
                   </h3>
                 </div>
 
-                <p className="text-sm sm:text-base text-zinc-600 font-medium leading-relaxed">
+                <p className="text-xs sm:text-sm lg:text-base text-zinc-600 font-medium leading-relaxed">
                   {item.description}
                 </p>
               </div>

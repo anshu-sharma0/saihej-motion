@@ -39,18 +39,18 @@ export const FaqSection: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="relative py-20 md:py-28 bg-[#FFFDF7] overflow-hidden">
+    <section id="faq" className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-[#FFFDF7] overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16">
           <div className="inline-flex items-center gap-2 rounded-full bg-[#FF4D4D]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#FF4D4D] mb-3">
             <HelpCircle className="h-4 w-4" />
             <span>Frequently Asked Questions</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#1F2937] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#1F2937] tracking-tight leading-tight">
             Got Questions? <span className="text-[#FF4D4D]">We&apos;ve Got</span> Answers!
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-zinc-600 font-medium">
+          <p className="mt-4 text-sm sm:text-base md:text-lg lg:text-xl text-zinc-600 font-medium leading-relaxed">
             Everything parents want to know about Saihej Motion, our 4K 3D animation,
             and our weekly uploading schedule.
           </p>
@@ -70,7 +70,7 @@ export const FaqSection: React.FC = () => {
               >
                 <button
                   onClick={() => toggleAccordion(idx)}
-                  className="w-full flex items-center justify-between p-4 text-left focus:outline-none cursor-pointer"
+                  className="w-full flex items-center justify-between p-4 sm:p-5 text-left focus:outline-none cursor-pointer"
                   aria-expanded={isOpen}
                 >
                   <span className="flex items-center gap-3">
@@ -82,7 +82,7 @@ export const FaqSection: React.FC = () => {
                     >
                       {idx + 1}
                     </span>
-                    <span className="text-lg sm:text-xl font-extrabold text-[#1F2937]">
+                    <span className="text-base sm:text-lg lg:text-xl font-extrabold text-[#1F2937]">
                       {item.question}
                     </span>
                   </span>
@@ -98,7 +98,7 @@ export const FaqSection: React.FC = () => {
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 sm:px-7 pb-7 pt-2 text-base text-zinc-600 font-medium leading-relaxed border-t border-zinc-100 animate-in fade-in duration-200">
+                  <div className="px-5 sm:px-7 pb-6 sm:pb-7 pt-2 text-sm sm:text-base text-zinc-600 font-medium leading-relaxed border-t border-zinc-100 animate-in fade-in duration-200">
                     <p>{item.answer}</p>
                     {idx === 4 && (
                       <div className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-[#FFD93D]/20 px-4 py-2 text-xs font-bold text-[#D97706]">

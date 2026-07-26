@@ -42,17 +42,27 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-20 pb-16"
+      className="relative w-full aspect-[864/1821] md:aspect-auto md:min-h-screen flex flex-col items-center justify-center overflow-hidden"
     >
       {/* FULL-WIDTH EDGE-TO-EDGE HERO ILLUSTRATION PLACEHOLDER */}
       <div className="absolute inset-0 z-0">
+        {/* Desktop Banner Image */}
         <Image
           src="/banner.png"
           fill
           priority
           quality={100}
           alt="Saihej Motion Hero Banner"
-          className="object-cover object-center"
+          className="hidden md:block object-cover object-center"
+        />
+        {/* Mobile Banner Image */}
+        <Image
+          src="/mobBanner.png"
+          fill
+          priority
+          quality={100}
+          alt="Saihej Motion Mobile Hero Banner"
+          className="block md:hidden object-cover object-top"
         />
         {/* <div className="absolute inset-0 bg-gradient-to-t from-[#0F1123] via-[#0F1123]/60 to-[#0F1123]/70" /> */}
         <div className="absolute inset-0 bg-radial from-transparent via-[#0F1123]/40 to-[#0F1123]/80" />

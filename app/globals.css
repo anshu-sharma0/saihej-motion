@@ -146,14 +146,20 @@
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.card-hover-glow:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.18), 0 0 0 2px rgba(59, 130, 246, 0.3);
+@media (hover: hover) and (pointer: fine) {
+  .card-hover-glow:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.18), 0 0 0 2px rgba(59, 130, 246, 0.3);
+  }
+
+  .card-hover-red:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(255, 77, 77, 0.25), 0 0 0 2px rgba(255, 77, 77, 0.4);
+  }
 }
 
-.card-hover-red:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 25px 50px -12px rgba(255, 77, 77, 0.25), 0 0 0 2px rgba(255, 77, 77, 0.4);
+.card-hover-glow:active, .card-hover-red:active {
+  transform: scale(0.99);
 }
 
 /* Custom Animations */

@@ -74,31 +74,31 @@ export const PlaylistsSection: React.FC<PlaylistsSectionProps> = ({
   };
 
   return (
-    <section id="playlists" className="relative py-20 md:py-28 bg-[#FFFDF7] overflow-hidden">
+    <section id="playlists" className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-[#FFFDF7] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16">
           <div className="inline-flex items-center gap-2 rounded-full bg-[#3B82F6]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#3B82F6] mb-3">
             <ListVideo className="h-4 w-4" />
             <span>Curated Collections</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[#1F2937] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#1F2937] tracking-tight leading-tight">
             Explore Our <span className="text-[#3B82F6]">Playlists</span> &amp; Series
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-zinc-600 font-medium">
+          <p className="mt-4 text-sm sm:text-base md:text-lg lg:text-xl text-zinc-600 font-medium leading-relaxed">
             Hand-picked video collections grouped by theme, character, and learning topic.
             Perfect for continuous, uninterrupted safe viewing!
           </p>
         </div>
 
         {/* Playlists Grid - First 2 large, next 3 standard */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 xl:gap-10">
           {playlists.map((playlist, idx) => (
             <div
               key={playlist.title}
               onClick={() => handlePlaylistClick(playlist)}
               className={`group relative flex flex-col rounded-3xl bg-white border-2 border-zinc-200 shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#3B82F6] ${
-                idx === 0 ? "md:col-span-1 lg:col-span-2" : ""
+                idx === 0 ? "sm:col-span-2 lg:col-span-2" : ""
               }`}
             >
               {/* Cover Placeholder */}
@@ -119,7 +119,7 @@ export const PlaylistsSection: React.FC<PlaylistsSectionProps> = ({
               </div>
 
               {/* Card Body */}
-              <div className="flex flex-col flex-grow p-6 sm:p-7">
+              <div className="flex flex-col flex-grow p-5 sm:p-6 lg:p-7 xl:p-8">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-bold uppercase tracking-wider text-[#3B82F6]">
                     Playlist Collection
@@ -129,16 +129,16 @@ export const PlaylistsSection: React.FC<PlaylistsSectionProps> = ({
                   </span>
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-extrabold text-[#1F2937] group-hover:text-[#3B82F6] transition-colors mb-2">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold text-[#1F2937] group-hover:text-[#3B82F6] transition-colors mb-2">
                   {playlist.title}
                 </h3>
 
-                <p className="text-sm sm:text-base text-zinc-600 font-medium mb-5">
+                <p className="text-xs sm:text-sm lg:text-base text-zinc-600 font-medium mb-5 leading-relaxed">
                   {playlist.shortDescription}
                 </p>
 
                 {/* Footer Action */}
-                <div className="mt-auto pt-4 border-t border-zinc-100 flex items-center justify-between font-extrabold text-sm text-[#3B82F6]">
+                <div className="mt-auto pt-4 border-t border-zinc-100 flex items-center justify-between font-extrabold text-xs sm:text-sm text-[#3B82F6]">
                   <span className="inline-flex items-center gap-2 group-hover:translate-x-1 transition-transform">
                     <span>Play Full Collection</span>
                     <span>→</span>

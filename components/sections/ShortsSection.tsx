@@ -62,19 +62,19 @@ export const ShortsSection: React.FC<ShortsSectionProps> = ({ onSelectShort }) =
   ];
 
   return (
-    <section className="relative py-20 md:py-28 bg-[#FFFDF7] overflow-hidden">
+    <section className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-[#FFFDF7] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-14 lg:mb-16 gap-6">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full bg-[#FF4D4D]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#FF4D4D] mb-3">
               <Sparkles className="h-4 w-4" />
               <span>Quick 60-Second Learning</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-[#1F2937] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#1F2937] tracking-tight leading-tight">
               Trending <span className="text-[#FF4D4D]">Shorts</span>
             </h2>
-            <p className="mt-3 text-base sm:text-lg text-zinc-600 font-medium max-w-2xl">
+            <p className="mt-3 text-sm sm:text-base md:text-lg lg:text-xl text-zinc-600 font-medium max-w-2xl leading-relaxed">
               Bite-sized 4K Hindi nursery rhyme clips and fun dance challenges for instant smiles!
             </p>
           </div>
@@ -83,7 +83,7 @@ export const ShortsSection: React.FC<ShortsSectionProps> = ({ onSelectShort }) =
             href="https://www.youtube.com/@SaihejMotion/shorts"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-3d-red self-start md:self-auto px-6 py-3 text-sm flex items-center gap-2"
+            className="btn-3d-red self-start md:self-auto px-5 py-2.5 sm:px-6 sm:py-3 lg:px-7 lg:py-3.5 text-xs sm:text-sm lg:text-base flex items-center gap-2"
           >
             <span>Watch More Shorts</span>
             <span className="text-xs">→</span>
@@ -91,7 +91,7 @@ export const ShortsSection: React.FC<ShortsSectionProps> = ({ onSelectShort }) =
         </div>
 
         {/* 6 Vertical Shorts Cards Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
           {shortsData.map((short) => (
             <div
               key={short.title}

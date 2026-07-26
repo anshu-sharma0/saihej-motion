@@ -82,13 +82,13 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onSubscribe })
         </div>
 
         {/* Heading */}
-        <h2 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6 drop-shadow-2xl">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6 drop-shadow-2xl">
           Ready for More <br />
           <span className="text-[#FFD93D]">Fun Learning?</span>
         </h2>
 
         {/* Text */}
-        <p className="max-w-2xl text-lg sm:text-2xl text-blue-100 font-medium leading-relaxed mb-10 drop-shadow-md">
+        <p className="max-w-3xl text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 font-medium leading-relaxed mb-10 drop-shadow-md">
           Join thousands of families enjoying fun-filled Hindi nursery rhymes, educational
           songs and Chintu&apos;s exciting adventures every week.
         </p>
@@ -97,7 +97,7 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onSubscribe })
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md">
           <button
             onClick={handleSubscribe}
-            className="btn-3d-red w-full sm:w-auto px-10 py-5 text-lg md:text-xl font-black flex items-center justify-center gap-3 cursor-pointer shadow-2xl transition-transform hover:scale-105"
+            className="btn-3d-red w-full sm:w-auto px-8 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 text-base sm:text-lg md:text-xl lg:text-2xl font-black flex items-center justify-center gap-3 cursor-pointer shadow-2xl transition-transform hover:scale-105"
           >
             <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#FF4D4D] text-sm">
               🔴

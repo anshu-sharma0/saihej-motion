@@ -38,26 +38,26 @@ export const Footer: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top 4-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-zinc-700/80">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 xl:gap-10 pb-12 border-b border-zinc-700/80">
           {/* Col 1: Logo & Channel Bio (4 cols) */}
-          <div className="lg:col-span-4 flex flex-col items-start">
+          <div className="sm:col-span-2 lg:col-span-4 flex flex-col items-start">
             <a href="#hero" className="flex items-center gap-3 text-decoration-none group">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-[#FF4D4D] via-[#FFD93D] to-[#3B82F6] p-0.5 shadow-lg">
+              <div className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-[#FF4D4D] via-[#FFD93D] to-[#3B82F6] p-0.5 shadow-lg">
                 <div className="flex h-full w-full items-center justify-center rounded-2xl bg-[#1F2937]">
-                  <Play className="h-6 w-6 text-[#FF4D4D] fill-current ml-0.5" />
+                  <Play className="h-5 w-5 sm:h-6 sm:w-6 text-[#FF4D4D] fill-current ml-0.5" />
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="font-extrabold text-2xl text-white">
+                <span className="font-extrabold text-xl sm:text-2xl text-white">
                   Saihej <span className="text-[#FF4D4D]">Motion</span>
                 </span>
-                <span className="text-xs font-bold uppercase tracking-wider text-[#FFD93D]">
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#FFD93D]">
                   Kids Songs • 3D Animation
                 </span>
               </div>
             </a>
 
-            <p className="mt-4 text-sm text-zinc-400 leading-relaxed font-medium">
+            <p className="mt-4 text-xs sm:text-sm lg:text-base text-zinc-400 leading-relaxed font-medium">
               Welcome to Saihej Motion – your home for the best 4K Hindi Nursery Rhymes,
               Kids Songs, Educational Videos and Disney-Pixar style 3D Animations. Perfect
               for toddlers and preschool children aged 2–8 years.

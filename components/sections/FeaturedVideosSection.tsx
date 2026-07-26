@@ -72,45 +72,32 @@ export const FeaturedVideosSection: React.FC<FeaturedVideosSectionProps> = ({
   return (
     <section
       id="featured-videos"
-      className="relative py-20 md:py-28 bg-gradient-to-b from-[#FFFDF7] via-[#FFF9EB] to-[#FFFDF7] overflow-hidden"
+      className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-b from-[#FFFDF7] via-[#FFF9EB] to-[#FFFDF7] overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Heading */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#FFD93D]/30 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#D97706] mb-3">
-              <Sparkles className="h-4 w-4 text-[#D97706]" />
-              <span>Watch • Sing • Enjoy</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-[#1F2937] tracking-tight">
-              Popular <span className="text-[#FF4D4D]">Videos</span>
-            </h2>
-            <p className="mt-3 text-base sm:text-lg text-zinc-600 font-medium max-w-2xl">
-              Our most loved 4K Hindi nursery rhymes and cartoon adventures! Click any video
-              to watch an instant interactive preview.
-            </p>
+        {/* Section Heading - Centered */}
+        <div className="mb-10 sm:mb-14 lg:mb-16 text-center">
+          <div className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FFD93D]/30 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#D97706] mb-3">
+            <Sparkles className="h-4 w-4 text-[#D97706]" />
+            <span>Watch • Sing • Enjoy</span>
           </div>
-
-          <a
-            href="https://www.youtube.com/@SaihejMotion/videos"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-3d-red self-start md:self-auto px-6 py-3 text-sm flex items-center gap-2"
-          >
-            <span>View All 252+ Videos</span>
-            <span className="text-xs">→</span>
-          </a>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#1F2937] tracking-tight leading-tight">
+            Popular <span className="text-[#FF4D4D]">Videos</span>
+          </h2>
+          <p className="mt-3 text-sm sm:text-base md:text-lg lg:text-xl text-zinc-600 font-medium max-w-2xl mx-auto leading-relaxed">
+            Our most loved 4K Hindi nursery rhymes and cartoon adventures!
+          </p>
         </div>
 
         {/* 6 Premium Featured Video Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {popularVideos.map((video, idx) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 xl:gap-10">
+          {popularVideos.map((video) => (
             <div
               key={video.title}
               onClick={() => onSelectVideo(video)}
               className="group relative flex flex-col rounded-3xl bg-white border-2 border-zinc-200/80 shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#FF4D4D]"
             >
-              {/* Thumbnail Placeholder with Hover Scale & Glow & Play Animation */}
+              {/* Thumbnail */}
               <div className="relative overflow-hidden aspect-video w-full bg-zinc-900">
                 <PlaceholderImage
                   category="video"
@@ -126,16 +113,16 @@ export const FeaturedVideosSection: React.FC<FeaturedVideosSectionProps> = ({
                   <span>{video.duration}</span>
                 </div>
 
-                {/* Animated Play Button overlay that glows on hover */}
+                {/* Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#FF4D4D] text-white shadow-2xl transition-transform duration-300 group-hover:scale-110">
-                    <Play className="h-8 w-8 fill-current ml-1" />
+                  <div className="flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-[#FF4D4D] text-white shadow-2xl transition-transform duration-300 group-hover:scale-110">
+                    <Play className="h-7 w-7 sm:h-8 sm:w-8 fill-current ml-1" />
                   </div>
                 </div>
               </div>
 
               {/* Card Body */}
-              <div className="flex flex-col flex-grow p-6">
+              <div className="flex flex-col flex-grow p-5 sm:p-6 lg:p-7">
                 <div className="flex items-center justify-between text-xs font-bold text-zinc-500 mb-2">
                   <span className="flex items-center gap-1 text-[#3B82F6]">
                     <Eye className="h-3.5 w-3.5" />
@@ -147,15 +134,15 @@ export const FeaturedVideosSection: React.FC<FeaturedVideosSectionProps> = ({
                   </span>
                 </div>
 
-                <h3 className="text-xl font-extrabold text-[#1F2937] group-hover:text-[#FF4D4D] transition-colors line-clamp-1 mb-2">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold text-[#1F2937] group-hover:text-[#FF4D4D] transition-colors line-clamp-1 mb-2">
                   {video.title}
                 </h3>
 
-                <p className="text-sm text-zinc-600 line-clamp-2 mb-4">
+                <p className="text-xs sm:text-sm lg:text-base text-zinc-600 line-clamp-2 mb-4 leading-relaxed">
                   {video.description}
                 </p>
 
-                {/* Play CTA footer inside card */}
+                {/* Play CTA footer */}
                 <div className="mt-auto pt-3 border-t border-zinc-100 flex items-center justify-between text-xs font-extrabold text-[#FF4D4D]">
                   <span className="group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
                     ▶ Watch Video Now
@@ -167,6 +154,19 @@ export const FeaturedVideosSection: React.FC<FeaturedVideosSectionProps> = ({
               </div>
             </div>
           ))}
+        </div>
+
+        {/* "View All Videos" Button – Centered below the grid */}
+        <div className="mt-10 sm:mt-12 lg:mt-14 flex justify-center">
+          <a
+            href="https://www.youtube.com/@SaihejMotion/videos"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF4D4D] text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base"
+          >
+            <span>View All Videos</span>
+            <span className="text-lg">→</span>
+          </a>
         </div>
       </div>
     </section>
