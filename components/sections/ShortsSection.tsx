@@ -4,6 +4,7 @@ import React from "react";
 import { Play, Sparkles, Eye } from "lucide-react";
 import { PlaceholderImage } from "../ui/PlaceholderImage";
 import { VideoModalData } from "../modals/VideoPlayerModal";
+import { Carousel } from "../ui/Carousel";
 
 interface ShortsSectionProps {
   onSelectShort?: (short: VideoModalData) => void;
@@ -82,13 +83,19 @@ export const ShortsSection: React.FC<ShortsSectionProps> = ({ onSelectShort }) =
           </p>
         </div>
 
-        {/* 6 Vertical Shorts Cards Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5 md:gap-6 lg:gap-6">
+        {/* 6 Vertical Shorts Cards Carousel across all screens */}
+        <Carousel
+          desktopMode="carousel"
+          desktopSlidesPerView={4.2}
+          mobileSlidesPerView={1.5}
+          tabletSlidesPerView={3.2}
+          gapPx={16}
+        >
           {shortsData.map((short) => (
             <div
               key={short.title}
               onClick={() => onSelectShort && onSelectShort(short)}
-              className="group relative flex flex-col rounded-3xl bg-white border-2 border-zinc-200/80 shadow-md overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#FF4D4D]/20 hover:border-[#FF4D4D]"
+              className="group relative flex flex-col h-full rounded-3xl bg-white border-2 border-zinc-200/80 shadow-md overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#FF4D4D]/20 hover:border-[#FF4D4D]"
             >
               {/* Vertical 9:16 Thumbnail */}
               <div className="relative overflow-hidden aspect-[9/16] w-full bg-zinc-900">
@@ -126,7 +133,7 @@ export const ShortsSection: React.FC<ShortsSectionProps> = ({ onSelectShort }) =
               </div>
             </div>
           ))}
-        </div>
+        </Carousel>
 
         {/* "Watch More Shorts" Button - Centered */}
         <div className="mt-10 sm:mt-12 lg:mt-14 flex justify-center">

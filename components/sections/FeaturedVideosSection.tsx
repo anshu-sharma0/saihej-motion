@@ -4,6 +4,7 @@ import React from "react";
 import { Play, Clock, Eye, Calendar, Sparkles } from "lucide-react";
 import { PlaceholderImage } from "../ui/PlaceholderImage";
 import { VideoModalData } from "../modals/VideoPlayerModal";
+import { Carousel } from "../ui/Carousel";
 
 interface FeaturedVideosSectionProps {
   onSelectVideo: (video: VideoModalData) => void;
@@ -89,13 +90,19 @@ export const FeaturedVideosSection: React.FC<FeaturedVideosSectionProps> = ({
           </p>
         </div>
 
-        {/* 6 Premium Featured Video Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 xl:gap-10">
+        {/* 6 Premium Featured Video Cards Carousel across all screens */}
+        <Carousel
+          desktopMode="carousel"
+          desktopSlidesPerView={3}
+          mobileSlidesPerView={1.15}
+          tabletSlidesPerView={2.15}
+          gapPx={24}
+        >
           {popularVideos.map((video) => (
             <div
               key={video.title}
               onClick={() => onSelectVideo(video)}
-              className="group relative flex flex-col rounded-3xl bg-white border-2 border-zinc-200/80 shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#FF4D4D]"
+              className="group relative flex flex-col h-full rounded-3xl bg-white border-2 border-zinc-200/80 shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#FF4D4D]"
             >
               {/* Thumbnail */}
               <div className="relative overflow-hidden aspect-video w-full bg-zinc-900">
@@ -154,7 +161,7 @@ export const FeaturedVideosSection: React.FC<FeaturedVideosSectionProps> = ({
               </div>
             </div>
           ))}
-        </div>
+        </Carousel>
 
         {/* "View All Videos" Button – Centered below the grid */}
         <div className="mt-10 sm:mt-12 lg:mt-14 flex justify-center">

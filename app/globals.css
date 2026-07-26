@@ -215,3 +215,21 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #FF4D4D;
 }
+
+/* Hide scrollbar for clean carousel swipe */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes swipe-bounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+.animate-swipe-bounce {
+  animation: swipe-bounce 2s ease-in-out infinite;
+}
+

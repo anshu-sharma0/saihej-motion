@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
-import { ChevronLeft, ChevronRight, Clock, Eye, Calendar, Play, Sparkles } from "lucide-react";
+import React from "react";
+import { Clock, Eye, Calendar, Play, Sparkles } from "lucide-react";
 import { PlaceholderImage } from "../ui/PlaceholderImage";
 import { VideoModalData } from "../modals/VideoPlayerModal";
+import { Carousel } from "../ui/Carousel";
 
 interface LatestVideosSectionProps {
   onSelectVideo?: (video: VideoModalData) => void;
@@ -63,60 +64,36 @@ export const LatestVideosSection: React.FC<LatestVideosSectionProps> = ({
     },
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? Math.max(0, latestVideos.length - 3) : prev - 1));
-  };
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev >= latestVideos.length - 3 ? 0 : prev + 1));
-  };
-
   return (
     <section className="relative py-8  md:py-12 lg:py-16 bg-[#FFFDF7] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header with Carousel Controls */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 lg:mb-12 gap-6">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#FF4D4D]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#FF4D4D] mb-3">
-              <Sparkles className="h-4 w-4" />
-              <span>New Videos Every Week</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#1F2937] tracking-tight leading-tight">
-              Latest <span className="text-[#3B82F6]">Uploads</span>
-            </h2>
-            <p className="mt-3 text-sm sm:text-base md:text-lg lg:text-xl text-zinc-600 font-medium max-w-2xl leading-relaxed">
-              Fresh 4K Hindi nursery rhymes and cartoon adventures uploaded every single week!
-            </p>
+        {/* Section Header */}
+        <div className="mb-8 lg:mb-12">
+          <div className="inline-flex items-center gap-2 rounded-full bg-[#FF4D4D]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#FF4D4D] mb-3">
+            <Sparkles className="h-4 w-4" />
+            <span>New Videos Every Week</span>
           </div>
-
-          {/* Carousel Buttons */}
-          <div className="flex items-center gap-2.5 sm:gap-3 self-end md:self-auto">
-            <button
-              onClick={prevSlide}
-              className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white border-2 border-zinc-200 text-[#1F2937] hover:border-[#FF4D4D] hover:text-[#FF4D4D] transition-colors shadow-md cursor-pointer"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white border-2 border-zinc-200 text-[#1F2937] hover:border-[#FF4D4D] hover:text-[#FF4D4D] transition-colors shadow-md cursor-pointer"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
-            </button>
-          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#1F2937] tracking-tight leading-tight">
+            Latest <span className="text-[#3B82F6]">Uploads</span>
+          </h2>
+          <p className="mt-3 text-sm sm:text-base md:text-lg lg:text-xl text-zinc-600 font-medium max-w-2xl leading-relaxed">
+            Fresh 4K Hindi nursery rhymes and cartoon adventures uploaded every single week!
+          </p>
         </div>
 
-        {/* Carousel Viewport */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 xl:gap-10 transition-all duration-500">
-          {latestVideos.slice(currentIndex, currentIndex + 3).map((video) => (
+        {/* Reusable Carousel Viewport (Carousel mode on Mobile, Tablet, and Desktop) */}
+        <Carousel
+          desktopMode="carousel"
+          desktopSlidesPerView={3}
+          mobileSlidesPerView={1.15}
+          tabletSlidesPerView={2.15}
+          gapPx={24}
+        >
+          {latestVideos.map((video) => (
             <div
               key={video.title}
               onClick={() => onSelectVideo && onSelectVideo(video)}
-              className="group relative flex flex-col rounded-3xl bg-white border-2 border-zinc-200/80 shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#3B82F6]"
+              className="group relative flex flex-col h-full rounded-3xl bg-white border-2 border-zinc-200/80 shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#3B82F6]"
             >
               {/* Thumbnail Placeholder */}
               <div className="relative overflow-hidden aspect-video w-full bg-zinc-900">
@@ -170,7 +147,7 @@ export const LatestVideosSection: React.FC<LatestVideosSectionProps> = ({
               </div>
             </div>
           ))}
-        </div>
+        </Carousel>
       </div>
     </section>
   );

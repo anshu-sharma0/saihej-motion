@@ -4,6 +4,7 @@ import React from "react";
 import { ListVideo, Play, Sparkles } from "lucide-react";
 import { PlaceholderImage } from "../ui/PlaceholderImage";
 import { VideoModalData } from "../modals/VideoPlayerModal";
+import { Carousel } from "../ui/Carousel";
 
 interface PlaylistsSectionProps {
   onSelectPlaylist?: (playlist: { title: string; count: string; description: string }) => void;
@@ -91,13 +92,19 @@ export const PlaylistsSection: React.FC<PlaylistsSectionProps> = ({
           </p>
         </div>
 
-        {/* Playlists Grid - First 2 large, next 3 standard */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 xl:gap-10">
+        {/* Playlists Carousel across all screens */}
+        <Carousel
+          desktopMode="carousel"
+          desktopSlidesPerView={3}
+          mobileSlidesPerView={1.15}
+          tabletSlidesPerView={2.15}
+          gapPx={24}
+        >
           {playlists.map((playlist, idx) => (
             <div
               key={playlist.title}
               onClick={() => handlePlaylistClick(playlist)}
-              className={`group relative flex flex-col rounded-3xl bg-white border-2 border-zinc-200 shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#3B82F6] ${idx === 0 ? "sm:col-span-2 lg:col-span-2" : ""
+              className={`group relative flex flex-col h-full rounded-3xl bg-white border-2 border-zinc-200 shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#3B82F6] ${idx === 0 ? "sm:col-span-2 lg:col-span-2" : ""
                 }`}
             >
               {/* Cover Placeholder */}
@@ -149,7 +156,7 @@ export const PlaylistsSection: React.FC<PlaylistsSectionProps> = ({
               </div>
             </div>
           ))}
-        </div>
+        </Carousel>
       </div>
     </section>
   );
