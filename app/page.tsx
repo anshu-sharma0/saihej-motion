@@ -1,65 +1,107 @@
-import Image from "next/image";
+"use client";
+
+import React, { useState } from "react";
+import { Navbar } from "../components/layout/Navbar";
+import { Footer } from "../components/layout/Footer";
+import { HeroSection } from "../components/sections/HeroSection";
+import { TrustSection } from "../components/sections/TrustSection";
+import { FeaturedVideosSection } from "../components/sections/FeaturedVideosSection";
+import { ChintuSection } from "../components/sections/ChintuSection";
+import { PlaylistsSection } from "../components/sections/PlaylistsSection";
+import { WhyParentsLoveUsSection } from "../components/sections/WhyParentsLoveUsSection";
+import { LatestVideosSection } from "../components/sections/LatestVideosSection";
+import { ShortsSection } from "../components/sections/ShortsSection";
+import { FaqSection } from "../components/sections/FaqSection";
+import { FinalCtaSection } from "../components/sections/FinalCtaSection";
+import { FloatingElements } from "../components/ui/FloatingElements";
+import { VideoPlayerModal, VideoModalData } from "../components/modals/VideoPlayerModal";
+import confetti from "canvas-confetti";
 
 export default function Home() {
+  const [selectedVideo, setSelectedVideo] = useState<VideoModalData | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = (video: VideoModalData) => {
+    setSelectedVideo(video);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedVideo(null);
+  };
+
+  const handleGlobalSubscribe = () => {
+    confetti({
+      particleCount: 120,
+      spread: 90,
+      origin: { y: 0.3 },
+      colors: ["#FF4D4D", "#FFD93D", "#3B82F6", "#22C55E"],
+    });
+    window.open("https://www.youtube.com/@SaihejMotion?sub_confirmation=1", "_blank", "noopener,noreferrer");
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="relative min-h-screen w-full flex flex-col bg-[#FFFDF7] text-[#1F2937] overflow-x-hidden">
+      {/* Background Floating Ambient Elements (Clouds, Stars, Musical Notes) */}
+      <FloatingElements />
+
+      {/* Navbar with Glassmorphism and Subscribe CTA */}
+      <Navbar onSubscribeClick={handleGlobalSubscribe} />
+
+      {/* Main Page Content */}
+      <main className="flex-1">
+        {/* Full-width 100vh Hero Banner */}
+        <HeroSection
+          onSubscribe={handleGlobalSubscribe}
+          onWatchLatest={() => {
+            const el = document.getElementById("featured-videos");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+          }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        {/* Parent Trust Cards Section */}
+        <TrustSection />
+
+        {/* Featured Popular Videos Section (6 premium cards) */}
+        <FeaturedVideosSection onSelectVideo={handleOpenModal} />
+
+        {/* Chintu Cartoon Character Section */}
+        {/* <ChintuSection
+          onExplore={() => {
+            const el = document.getElementById("playlists");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+          }}
+        /> */}
+
+        {/* Curated Playlists & Series Section */}
+        <PlaylistsSection onOpenVideo={handleOpenModal} />
+
+        {/* Why Parents Love Us Section (8 large cards) */}
+        <WhyParentsLoveUsSection />
+
+        {/* Latest Videos Carousel Section */}
+        <LatestVideosSection onSelectVideo={handleOpenModal} />
+
+        {/* Trending Shorts Grid Section (Vertical 9:16) */}
+        <ShortsSection onSelectShort={handleOpenModal} />
+
+        {/* FAQ Accordion Section (5 questions) */}
+        <FaqSection />
+
+        {/* Final CTA Rainbow & Confetti Section */}
+        <FinalCtaSection onSubscribe={handleGlobalSubscribe} />
       </main>
+
+      {/* Footer */}
+      <Footer />
+
+      {/* Interactive 4K Video Player Modal */}
+      <VideoPlayerModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        video={selectedVideo}
+      />
     </div>
   );
 }
