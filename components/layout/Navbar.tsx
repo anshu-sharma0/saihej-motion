@@ -5,6 +5,7 @@ import { Play, Sparkles, Menu, X, Heart } from "lucide-react";
 import confetti from "canvas-confetti";
 import { YouTubeIcon } from "../ui/SocialIcons";
 import { useYouTube } from "../../context/YouTubeContext";
+import Image from "next/image";
 
 interface NavbarProps {
   onSubscribeClick?: () => void;
@@ -65,23 +66,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
             href="#hero"
             className="group flex items-center gap-2 sm:gap-3 text-decoration-none focus:outline-none"
           >
-            <div className="relative flex h-10 w-10 sm:h-11 sm:w-11 lg:h-12 lg:w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-[#FF4D4D] via-[#FFD93D] to-[#3B82F6] p-0.5 shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:rotate-3">
-              <div className="flex h-full w-full items-center justify-center rounded-2xl bg-[#FFFDF7]">
-                <Play className="h-5 w-5 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-[#FF4D4D] fill-current ml-0.5" />
-              </div>
-              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#22C55E] text-[9px] font-black text-white shadow">
-                4K
-              </span>
-            </div>
+            <Image
+              src="/logo.png"
+              alt="logo"
+              width={50}
+              height={50}
+              className="object-contain"
+            />
             <div className="flex flex-col">
-              <span className={`font-extrabold text-lg sm:text-xl lg:text-2xl leading-none tracking-tight transition-colors ${
-                isScrolled ? "text-[#1F2937]" : "text-white"
-              }`}>
+              <span className={`font-extrabold text-lg sm:text-xl lg:text-2xl leading-none tracking-tight transition-colors ${isScrolled ? "text-[#1F2937]" : "text-white"
+                }`}>
                 Saihej <span className="text-[#FF4D4D]">Motion</span>
               </span>
-              <span className={`text-[9px] sm:text-[10px] lg:text-xs font-bold uppercase tracking-wider transition-colors ${
-                isScrolled ? "text-zinc-500" : "text-white/80"
-              }`}>
+              <span className={`text-[9px] sm:text-[10px] lg:text-xs font-bold uppercase tracking-wider transition-colors ${isScrolled ? "text-zinc-500" : "text-white/80"
+                }`}>
                 Kids Songs • 3D Animation
               </span>
             </div>
@@ -105,9 +103,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
 
           {/* Right Side: Subscribe CTA + Stats */}
           <div className="hidden lg:flex items-center gap-3">
-            <div className={`hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold shadow-sm ${
-              isScrolled ? "bg-[#FF4D4D]/10 text-[#FF4D4D] border border-[#FF4D4D]/20" : "bg-white/20 text-white backdrop-blur-md"
-            }`}>
+            <div className={`hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold shadow-sm ${isScrolled ? "bg-[#FF4D4D]/10 text-[#FF4D4D] border border-[#FF4D4D]/20" : "bg-white/20 text-white backdrop-blur-md"
+              }`}>
               <span>❤️</span>
               <span>{stats.subscriberCount} Subs</span>
             </div>
@@ -125,11 +122,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
           <div className="flex md:hidden items-center gap-2">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`flex h-10 w-10 items-center justify-center rounded-xl border transition-all ${
-                isScrolled
-                  ? "bg-white/80 border-zinc-200 text-[#1F2937]"
-                  : "bg-white/20 border-white/30 text-white backdrop-blur-md"
-              }`}
+              className={`flex h-10 w-10 items-center justify-center rounded-xl border transition-all ${isScrolled
+                ? "bg-white/80 border-zinc-200 text-[#1F2937]"
+                : "bg-white/20 border-white/30 text-white backdrop-blur-md"
+                }`}
               aria-label="Toggle navigation menu"
             >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}

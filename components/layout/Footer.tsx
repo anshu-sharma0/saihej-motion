@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { Play, Mail, Heart, Sparkles, Send } from "lucide-react";
-import { YouTubeIcon, InstagramIcon, FacebookIcon } from "../ui/SocialIcons";
+import { Heart } from "lucide-react";
+import Image from "next/image";
 
 export const Footer: React.FC = () => {
   const quickLinks = [
@@ -42,11 +42,13 @@ export const Footer: React.FC = () => {
           {/* Col 1: Logo & Channel Bio (4 cols) */}
           <div className="sm:col-span-2 lg:col-span-4 flex flex-col items-start">
             <a href="#hero" className="flex items-center gap-3 text-decoration-none group">
-              <div className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-2xl bg-gradient-to-tr from-[#FF4D4D] via-[#FFD93D] to-[#3B82F6] p-0.5 shadow-lg">
-                <div className="flex h-full w-full items-center justify-center rounded-2xl bg-[#1F2937]">
-                  <Play className="h-5 w-5 sm:h-6 sm:w-6 text-[#FF4D4D] fill-current ml-0.5" />
-                </div>
-              </div>
+              <Image
+                src="/logo.png"
+                alt="logo"
+                width={50}
+                height={50}
+                className="object-contain"
+              />
               <div className="flex flex-col">
                 <span className="font-extrabold text-xl sm:text-2xl text-white">
                   Saihej <span className="text-[#FF4D4D]">Motion</span>
@@ -63,46 +65,6 @@ export const Footer: React.FC = () => {
               for toddlers and preschool children aged 2–8 years.
             </p>
 
-            {/* Social Icons */}
-            <div className="mt-6 flex items-center gap-3">
-              <a
-                href="https://www.youtube.com/@SaihejMotion"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube Channel"
-                className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#FF0000] text-white hover:scale-110 transition-transform shadow-md"
-              >
-                <YouTubeIcon className="h-6 w-6" />
-              </a>
-
-              <a
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram Page"
-                className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF] text-white hover:scale-110 transition-transform shadow-md"
-              >
-                <InstagramIcon className="h-5 w-5" />
-              </a>
-
-              <a
-                href="https://www.facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook Page"
-                className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#1877F2] text-white hover:scale-110 transition-transform shadow-md"
-              >
-                <FacebookIcon className="h-5 w-5" />
-              </a>
-
-              <a
-                href="mailto:punjab.sabbi@gmail.com"
-                aria-label="Business Email"
-                className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#22C55E] text-white hover:scale-110 transition-transform shadow-md"
-              >
-                <Mail className="h-5 w-5" />
-              </a>
-            </div>
           </div>
 
           {/* Col 2: Quick Links (2 cols) */}
@@ -166,7 +128,7 @@ export const Footer: React.FC = () => {
             </ul>
 
             {/* Business Email Banner */}
-            <div className="rounded-2xl bg-zinc-800 p-4 border border-zinc-700">
+            {/* <div className="rounded-2xl bg-zinc-800 p-4 border border-zinc-700">
               <span className="text-xs font-extrabold uppercase text-[#22C55E] block mb-1">
                 Business &amp; Rhyme Requests
               </span>
@@ -177,7 +139,7 @@ export const Footer: React.FC = () => {
                 <Mail className="h-4 w-4 shrink-0 text-[#FFD93D]" />
                 <span>punjab.sabbi@gmail.com</span>
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
 

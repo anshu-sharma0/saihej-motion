@@ -7,12 +7,10 @@ import Image from "next/image";
 import { useYouTube } from "../../context/YouTubeContext";
 
 interface HeroSectionProps {
-  onWatchLatest?: () => void;
   onSubscribe?: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
-  onWatchLatest,
   onSubscribe,
 }) => {
   const { stats } = useYouTube();
@@ -27,15 +25,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       onSubscribe();
     } else {
       window.open("https://www.youtube.com/@SaihejMotion?sub_confirmation=1", "_blank", "noopener,noreferrer");
-    }
-  };
-
-  const handleScrollToVideos = () => {
-    if (onWatchLatest) {
-      onWatchLatest();
-    } else {
-      const el = document.getElementById("featured-videos");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -64,115 +53,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           alt="Saihej Motion Mobile Hero Banner"
           className="block md:hidden object-cover object-top"
         />
-        {/* <div className="absolute inset-0 bg-gradient-to-t from-[#0F1123] via-[#0F1123]/60 to-[#0F1123]/70" /> */}
         <div className="absolute inset-0 bg-radial from-transparent via-[#0F1123]/40 to-[#0F1123]/80" />
       </div>
 
-      {/* CENTERED HERO CONTENT */}
-      {/* <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center h-full flex flex-col items-center justify-between my-auto">
-        <div className="mb-8 space-y-2">
-          <p className="text-sm sm:text-base md:text-lg font-bold uppercase tracking-[0.35em] text-yellow-300 drop-shadow-lg">
-            Hindi Nursery Rhymes
-          </p>
-
-          <h1 className="select-none leading-[0.82] tracking-tight">
-            <span
-              className="
-      block
-      text-[3.5rem]
-      sm:text-[5.5rem]
-      md:text-[7rem]
-      lg:text-[8rem]
-      xl:text-[9rem]
-      font-black
-      uppercase
-      bg-gradient-to-b
-      from-sky-200
-      via-cyan-300
-      to-sky-600
-      bg-clip-text
-      text-transparent
-      drop-shadow-[0_8px_30px_rgba(0,0,0,.45)]
-    "
-              style={{
-                WebkitTextStroke: "6px #ffffff",
-                textShadow: `
-      0 2px 0 #ffffff,
-      0 4px 0 #ffffff,
-      0 6px 0 #4f46e5,
-      0 10px 18px rgba(0,0,0,.35)
-    `,
-              }}
-            >
-              SAIHEJ
-            </span>
-
-            <span
-              className="
-      -mt-3
-      block
-      text-[3.5rem]
-      sm:text-[5.5rem]
-      md:text-[7rem]
-      lg:text-[8rem]
-      xl:text-[9rem]
-      font-black
-      uppercase
-      bg-gradient-to-b
-      from-yellow-100
-      via-yellow-300
-      to-orange-500
-      bg-clip-text
-      text-transparent
-      drop-shadow-[0_10px_35px_rgba(0,0,0,.45)]
-    "
-              style={{
-                WebkitTextStroke: "6px #ffffff",
-                textShadow: `
-      0 2px 0 #ffffff,
-      0 4px 0 #ffffff,
-      0 6px 0 #2563eb,
-      0 12px 20px rgba(0,0,0,.4)
-    `,
-              }}
-            >
-              MOTION
-            </span>
-          </h1>
-
-          <div className="inline-flex rounded-full bg-gradient-to-r from-red-500 to-red-600 px-6 py-2 shadow-2xl">
-            <span className="text-base sm:text-lg md:text-xl font-black text-white tracking-wide">
-              Hindi Nursery Rhymes
-            </span>
-          </div>
-        </div>
-
-        <p className="mx-auto mb-10 max-w-3xl text-base sm:text-lg md:text-xl leading-8 font-medium text-white/95 drop-shadow-xl">
-          Welcome to <span className="font-extrabold text-yellow-300">Saihej Motion</span>,
-          where learning becomes an exciting adventure! Discover colourful
-          <span className="font-semibold text-sky-300"> 4K Hindi Nursery Rhymes</span>,
-          fun-filled cartoon stories, educational songs, alphabet & number learning,
-          and lovable characters like <span className="font-semibold text-yellow-300">Chintu</span>.
-          Every video is thoughtfully created to help toddlers and preschoolers
-          <span className="font-semibold text-green-300"> learn, sing, dance, imagine, and grow</span>
-          in a safe, joyful, and entertaining world.
-        </p>
-
-        <div className="mt-10 flex sm:hidden flex-wrap items-center justify-center gap-2">
-          <span className="rounded-full bg-white/20 backdrop-blur-md px-3 py-1 text-xs font-extrabold text-white">
-            ❤️ 1.16K+ Subscribers
-          </span>
-          <span className="rounded-full bg-white/20 backdrop-blur-md px-3 py-1 text-xs font-extrabold text-white">
-            🎥 252+ Videos
-          </span>
-          <span className="rounded-full bg-white/20 backdrop-blur-md px-3 py-1 text-xs font-extrabold text-white">
-            👀 {stats.viewCount} Views
-          </span>
-        </div>
-      </div> */}
+      {/* Hero Action Buttons (Subscribe Now & Watch Videos) */}
+      <div className="absolute bottom-42 lg:bottom-32 left-1/2 -translate-x-1/2 z-30 flex flex-wrap items-center justify-center gap-3 sm:gap-4 w-full px-4">
+        <button
+          onClick={handleSubscribe}
+          className="group relative inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-[#FF0000] via-[#FF3333] to-[#FF0000] px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-extrabold text-white shadow-[0_8px_30px_rgba(255,0,0,0.5)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_40px_rgba(255,0,0,0.7)] active:scale-95 cursor-pointer border-2 border-white/30"
+        >
+          <span>Subscribe Now</span>
+        </button>
+      </div>
 
       {/* Floating Live YouTube Stats Bar */}
-      <div className="absolute bottom-14 left-1/2 -translate-x-1/2 z-30 flex flex-wrap items-center justify-center gap-2 sm:gap-4 px-4 sm:px-6 py-2.5 rounded-full bg-[#0F1123]/75 backdrop-blur-xl border border-white/20 shadow-2xl">
+      <div className="absolute bottom-10 sm:bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-wrap items-center justify-center gap-2 sm:gap-4 px-4 sm:px-6 py-2.5 rounded-full bg-[#0F1123]/80 backdrop-blur-xl border border-white/20 shadow-2xl">
         <span className="flex items-center gap-1.5 text-xs sm:text-sm font-black text-white">
           <span>❤️</span>
           <span className="text-[#FFD93D]">{stats.subscriberCount}</span>
@@ -194,6 +89,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
       {/* Curved Section Divider transitioning to white/cream background */}
       <SectionDivider position="bottom" color="#FFFDF7" variant="curved" />
-    </section >
+    </section>
   );
 };
