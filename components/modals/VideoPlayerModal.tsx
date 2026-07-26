@@ -12,6 +12,8 @@ export interface VideoModalData {
   category?: string;
   description?: string;
   lyricsSnippet?: string;
+  videoId?: string;
+  thumbnailUrl?: string;
 }
 
 interface VideoPlayerModalProps {

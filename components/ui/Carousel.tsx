@@ -39,10 +39,6 @@ export interface CarouselProps {
    */
   showDots?: boolean;
   /**
-   * Whether to show mobile swipe hint badge.
-   */
-  showSwipeHint?: boolean;
-  /**
    * Optional custom className for the top-level container.
    */
   className?: string;
@@ -61,7 +57,6 @@ export const Carousel: React.FC<CarouselProps> = ({
   desktopGridCols = 3,
   showArrows = true,
   showDots = true,
-  showSwipeHint = true,
   className = "",
   gapPx = 24,
 }) => {
@@ -155,85 +150,38 @@ export const Carousel: React.FC<CarouselProps> = ({
         }
         .${slideClass} {
           flex: 0 0 calc(100% / ${mobileSlidesPerView} - ${Math.round(
-            (gapPx * (mobileSlidesPerView - 1)) / mobileSlidesPerView
-          )}px);
+        (gapPx * (mobileSlidesPerView - 1)) / mobileSlidesPerView
+      )}px);
           scroll-snap-align: start;
         }
         @media (min-width: 640px) {
           .${slideClass} {
             flex: 0 0 calc(100% / ${tabletSlidesPerView} - ${Math.round(
-              (gapPx * (tabletSlidesPerView - 1)) / tabletSlidesPerView
-            )}px);
+        (gapPx * (tabletSlidesPerView - 1)) / tabletSlidesPerView
+      )}px);
           }
         }
         @media (min-width: 1024px) {
           .${containerClass} {
             display: ${isDesktopGrid ? "grid" : "flex"};
-            grid-template-columns: ${
-              isDesktopGrid
-                ? `repeat(${desktopGridCols}, minmax(0, 1fr))`
-                : "none"
-            };
+            grid-template-columns: ${isDesktopGrid
+          ? `repeat(${desktopGridCols}, minmax(0, 1fr))`
+          : "none"
+        };
             overflow-x: ${isDesktopGrid ? "visible" : "auto"};
             padding-bottom: ${isDesktopGrid ? "0px" : "12px"};
           }
           .${slideClass} {
-            flex: ${
-              isDesktopGrid
-                ? "none"
-                : `0 0 calc(100% / ${desktopSlidesPerView} - ${Math.round(
-                    (gapPx * (desktopSlidesPerView - 1)) / desktopSlidesPerView
-                  )}px)`
-            };
+            flex: ${isDesktopGrid
+          ? "none"
+          : `0 0 calc(100% / ${desktopSlidesPerView} - ${Math.round(
+            (gapPx * (desktopSlidesPerView - 1)) / desktopSlidesPerView
+          )}px)`
+        };
             width: ${isDesktopGrid ? "100%" : "auto"};
           }
         }
       `}</style>
-
-      {/* Top Bar: Swipe Hint Badge on Mobile & Tablet */}
-      {showSwipeHint && (
-        <div
-          className={`flex items-center justify-between mb-4 ${
-            isDesktopGrid ? "lg:hidden" : ""
-          }`}
-        >
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/90 border border-[#FF4D4D]/25 shadow-sm text-xs font-extrabold text-[#1F2937] animate-swipe-bounce">
-            <Sparkles className="h-3.5 w-3.5 text-[#FF4D4D]" />
-            <span className="sm:hidden">← Swipe to explore →</span>
-            <span className="hidden sm:inline">← Slide to explore →</span>
-          </div>
-
-          {/* Mini mobile arrow buttons */}
-          {showArrows && (
-            <div className="flex items-center gap-1.5">
-              <button
-                onClick={scrollPrev}
-                disabled={activeIndex === 0}
-                aria-label="Previous slide"
-                className={`flex h-8 w-8 items-center justify-center rounded-full bg-white border border-zinc-200 text-[#1F2937] shadow-sm transition-all duration-200 cursor-pointer ${
-                  activeIndex === 0
-                    ? "opacity-40 cursor-not-allowed"
-                    : "hover:border-[#FF4D4D] hover:text-[#FF4D4D]"
-                }`}
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </button>
-              <button
-                onClick={scrollNext}
-                disabled={activeIndex >= maxIndex}
-                aria-label="Next slide"
-                className={`flex h-8 w-8 items-center justify-center rounded-full bg-white border border-zinc-200 text-[#1F2937] shadow-sm transition-all duration-200 cursor-pointer ${
-                  activeIndex >= maxIndex
-                    ? "opacity-40 cursor-not-allowed"
-                    : "hover:border-[#FF4D4D] hover:text-[#FF4D4D]"
-                }`}
-              >
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
-          )}
-        </div>
-      )}
 
       {/* Carousel Track */}
       <div
@@ -256,9 +204,8 @@ export const Carousel: React.FC<CarouselProps> = ({
       {/* Pagination Indicator Pills */}
       {showDots && totalItems > 1 && (
         <div
-          className={`mt-4 flex items-center justify-center gap-2 ${
-            isDesktopGrid ? "lg:hidden" : ""
-          }`}
+          className={`mt-4 flex items-center justify-center gap-2 ${isDesktopGrid ? "lg:hidden" : ""
+            }`}
         >
           {items.map((_, index) => {
             const isActive = index === activeIndex;
@@ -268,11 +215,10 @@ export const Carousel: React.FC<CarouselProps> = ({
                 onClick={() => scrollToSlide(index)}
                 aria-label={`Go to slide ${index + 1}`}
                 aria-current={isActive ? "true" : "false"}
-                className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  isActive
-                    ? "w-7 bg-gradient-to-r from-[#FF4D4D] to-[#FF8A8A] shadow-md scale-105"
-                    : "w-2.5 bg-zinc-300 hover:bg-zinc-400"
-                }`}
+                className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${isActive
+                  ? "w-7 bg-gradient-to-r from-[#FF4D4D] to-[#FF8A8A] shadow-md scale-105"
+                  : "w-2.5 bg-zinc-300 hover:bg-zinc-400"
+                  }`}
               />
             );
           })}
@@ -282,19 +228,17 @@ export const Carousel: React.FC<CarouselProps> = ({
       {/* Large Navigation Arrows for Tablet / Carousel Desktop Mode */}
       {showArrows && (
         <div
-          className={`hidden sm:flex items-center justify-between pointer-events-none absolute inset-y-0 -left-4 -right-4 lg:-left-6 lg:-right-6 z-20 ${
-            isDesktopGrid ? "lg:hidden" : ""
-          }`}
+          className={`hidden sm:flex items-center justify-between pointer-events-none absolute inset-y-0 -left-4 -right-4 lg:-left-6 lg:-right-6 z-20 ${isDesktopGrid ? "lg:hidden" : ""
+            }`}
         >
           <button
             onClick={scrollPrev}
             disabled={activeIndex === 0}
             aria-label="Previous slide"
-            className={`pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full bg-white/95 backdrop-blur-md border-2 border-zinc-200 text-[#1F2937] shadow-lg transition-all duration-300 cursor-pointer ${
-              activeIndex === 0
-                ? "opacity-30 cursor-not-allowed scale-95"
-                : "hover:border-[#FF4D4D] hover:text-[#FF4D4D] hover:scale-110 hover:shadow-xl"
-            }`}
+            className={`pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full bg-white/95 backdrop-blur-md border-2 border-zinc-200 text-[#1F2937] shadow-lg transition-all duration-300 cursor-pointer ${activeIndex === 0
+              ? "opacity-30 cursor-not-allowed scale-95"
+              : "hover:border-[#FF4D4D] hover:text-[#FF4D4D] hover:scale-110 hover:shadow-xl"
+              }`}
           >
             <ChevronLeft className="h-6 w-6" />
           </button>
@@ -303,11 +247,10 @@ export const Carousel: React.FC<CarouselProps> = ({
             onClick={scrollNext}
             disabled={activeIndex >= maxIndex}
             aria-label="Next slide"
-            className={`pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full bg-white/95 backdrop-blur-md border-2 border-zinc-200 text-[#1F2937] shadow-lg transition-all duration-300 cursor-pointer ${
-              activeIndex >= maxIndex
-                ? "opacity-30 cursor-not-allowed scale-95"
-                : "hover:border-[#FF4D4D] hover:text-[#FF4D4D] hover:scale-110 hover:shadow-xl"
-            }`}
+            className={`pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full bg-white/95 backdrop-blur-md border-2 border-zinc-200 text-[#1F2937] shadow-lg transition-all duration-300 cursor-pointer ${activeIndex >= maxIndex
+              ? "opacity-30 cursor-not-allowed scale-95"
+              : "hover:border-[#FF4D4D] hover:text-[#FF4D4D] hover:scale-110 hover:shadow-xl"
+              }`}
           >
             <ChevronRight className="h-6 w-6" />
           </button>

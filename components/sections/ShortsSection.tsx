@@ -5,62 +5,14 @@ import { Play, Sparkles, Eye } from "lucide-react";
 import { PlaceholderImage } from "../ui/PlaceholderImage";
 import { VideoModalData } from "../modals/VideoPlayerModal";
 import { Carousel } from "../ui/Carousel";
+import { useYouTube } from "../../context/YouTubeContext";
 
 interface ShortsSectionProps {
   onSelectShort?: (short: VideoModalData) => void;
 }
 
 export const ShortsSection: React.FC<ShortsSectionProps> = ({ onSelectShort }) => {
-  const shortsData: VideoModalData[] = [
-    {
-      title: "Chintu's Funny Dance Challenge #Shorts",
-      duration: "0:58",
-      views: "48.2K",
-      uploadDate: "3 days ago",
-      category: "Kids Shorts",
-      description: "Watch Chintu do the funny monkey dance in 60 seconds! Can your toddler follow along?",
-    },
-    {
-      title: "A B C D E F G Rapid Song #Shorts",
-      duration: "0:45",
-      views: "35.7K",
-      uploadDate: "5 days ago",
-      category: "Learning Shorts",
-      description: "Quick alphabet song with 3D colorful letters popping up on screen!",
-    },
-    {
-      title: "Machli Jal Ki Rani Splash #Shorts",
-      duration: "0:50",
-      views: "62.1K",
-      uploadDate: "1 week ago",
-      category: "Trending #1",
-      description: "Our famous underwater goldfish rhyme condensed into an instant shorts favourite.",
-    },
-    {
-      title: "Clap Your Hands Happy Song #Shorts",
-      duration: "0:55",
-      views: "29.4K",
-      uploadDate: "1 week ago",
-      category: "Sing & Dance",
-      description: "If you're happy and you know it clap your hands! Chintu and friends clapping.",
-    },
-    {
-      title: "Red Blue Yellow Colors Quick #Shorts",
-      duration: "0:42",
-      views: "38.9K",
-      uploadDate: "2 weeks ago",
-      category: "Colours",
-      description: "Balloons bursting in red, blue, and yellow! Can you shout the color names?",
-    },
-    {
-      title: "Good Night Chanda Mama Lullaby #Shorts",
-      duration: "0:59",
-      views: "41.0K",
-      uploadDate: "2 weeks ago",
-      category: "Bedtime",
-      description: "Sweet dreams with Chintu and Chanda Mama looking down from the peaceful sky.",
-    },
-  ];
+  const { shorts } = useYouTube();
 
   return (
     <section className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-b from-[#FFFDF7] via-[#FFF5F0] to-[#FFFDF7] overflow-hidden">
@@ -91,7 +43,7 @@ export const ShortsSection: React.FC<ShortsSectionProps> = ({ onSelectShort }) =
           tabletSlidesPerView={3.2}
           gapPx={16}
         >
-          {shortsData.map((short) => (
+          {shorts.map((short) => (
             <div
               key={short.title}
               onClick={() => onSelectShort && onSelectShort(short)}
@@ -99,14 +51,22 @@ export const ShortsSection: React.FC<ShortsSectionProps> = ({ onSelectShort }) =
             >
               {/* Vertical 9:16 Thumbnail */}
               <div className="relative overflow-hidden aspect-[9/16] w-full bg-zinc-900">
-                <PlaceholderImage
-                  category="video"
-                  title={short.title}
-                  alt={`${short.category} • Shorts`}
-                  aspectRatio="vertical"
-                  badge="SHORTS"
-                  className="h-full w-full transition-transform duration-500 group-hover:scale-110 !rounded-none"
-                />
+                {short.thumbnailUrl ? (
+                  <img
+                    src={short.thumbnailUrl}
+                    alt={short.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                ) : (
+                  <PlaceholderImage
+                    category="video"
+                    title={short.title}
+                    alt={`${short.category || "Shorts"} • Shorts`}
+                    aspectRatio="vertical"
+                    badge="SHORTS"
+                    className="h-full w-full transition-transform duration-500 group-hover:scale-110 !rounded-none"
+                  />
+                )}
 
                 {/* Duration badge */}
                 <div className="absolute top-3 right-3 rounded-md bg-black/70 backdrop-blur-md px-2 py-0.5 text-[10px] font-extrabold text-white">

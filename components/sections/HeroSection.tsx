@@ -1,11 +1,10 @@
 "use client";
 
 import React from "react";
-import { Play, ChevronDown, Sparkles, Heart, Video, Eye } from "lucide-react";
 import confetti from "canvas-confetti";
-import { PlaceholderImage } from "../ui/PlaceholderImage";
 import { SectionDivider } from "../ui/SectionDivider";
 import Image from "next/image";
+import { useYouTube } from "../../context/YouTubeContext";
 
 interface HeroSectionProps {
   onWatchLatest?: () => void;
@@ -16,6 +15,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onWatchLatest,
   onSubscribe,
 }) => {
+  const { stats } = useYouTube();
   const handleSubscribe = () => {
     confetti({
       particleCount: 120,
@@ -166,10 +166,31 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             🎥 252+ Videos
           </span>
           <span className="rounded-full bg-white/20 backdrop-blur-md px-3 py-1 text-xs font-extrabold text-white">
-            👀 107K+ Views
+            👀 {stats.viewCount} Views
           </span>
         </div>
       </div> */}
+
+      {/* Floating Live YouTube Stats Bar */}
+      <div className="absolute bottom-14 left-1/2 -translate-x-1/2 z-30 flex flex-wrap items-center justify-center gap-2 sm:gap-4 px-4 sm:px-6 py-2.5 rounded-full bg-[#0F1123]/75 backdrop-blur-xl border border-white/20 shadow-2xl">
+        <span className="flex items-center gap-1.5 text-xs sm:text-sm font-black text-white">
+          <span>❤️</span>
+          <span className="text-[#FFD93D]">{stats.subscriberCount}</span>
+          <span>Subscribers</span>
+        </span>
+        <span className="hidden sm:inline text-white/40">•</span>
+        <span className="flex items-center gap-1.5 text-xs sm:text-sm font-black text-white">
+          <span>🎥</span>
+          <span className="text-sky-400">{stats.videoCount}</span>
+          <span>4K Videos</span>
+        </span>
+        <span className="hidden sm:inline text-white/40">•</span>
+        <span className="flex items-center gap-1.5 text-xs sm:text-sm font-black text-white">
+          <span>👀</span>
+          <span className="text-green-400">{stats.viewCount}</span>
+          <span>Views</span>
+        </span>
+      </div>
 
       {/* Curved Section Divider transitioning to white/cream background */}
       <SectionDivider position="bottom" color="#FFFDF7" variant="curved" />

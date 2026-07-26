@@ -5,6 +5,7 @@ import { Clock, Eye, Calendar, Play, Sparkles } from "lucide-react";
 import { PlaceholderImage } from "../ui/PlaceholderImage";
 import { VideoModalData } from "../modals/VideoPlayerModal";
 import { Carousel } from "../ui/Carousel";
+import { useYouTube } from "../../context/YouTubeContext";
 
 interface LatestVideosSectionProps {
   onSelectVideo?: (video: VideoModalData) => void;
@@ -13,62 +14,13 @@ interface LatestVideosSectionProps {
 export const LatestVideosSection: React.FC<LatestVideosSectionProps> = ({
   onSelectVideo,
 }) => {
-  const latestVideos: VideoModalData[] = [
-    {
-      title: "Chintu's Birthday Surprise Song",
-      duration: "3:30",
-      views: "12.4K",
-      uploadDate: "2 days ago",
-      category: "New Upload",
-      description: "Celebrate with Chintu and all his friends as they sing happy birthday in 4K!",
-    },
-    {
-      title: "Lakdi Ki Kathi Kathi Pe Ghoda",
-      duration: "2:55",
-      views: "18.9K",
-      uploadDate: "5 days ago",
-      category: "Classic Rhyme",
-      description: "The beloved wooden horse ride song brought to life with 3D Disney style animation.",
-    },
-    {
-      title: "Nani Teri Morni Ko Mor Le Gaye",
-      duration: "3:15",
-      views: "21.6K",
-      uploadDate: "1 week ago",
-      category: "Hindi Nursery Rhyme",
-      description: "Nani teri morni ko mor le gaye! A heartwarming and funny peacock adventure.",
-    },
-    {
-      title: "Counting Stars 1 to 10 Song",
-      duration: "2:40",
-      views: "16.2K",
-      uploadDate: "1 week ago",
-      category: "Educational",
-      description: "Look up at the night sky and learn to count from 1 to 10 with twinkling stars.",
-    },
-    {
-      title: "Hathi Raja Kahan Chale",
-      duration: "3:00",
-      views: "24.1K",
-      uploadDate: "2 weeks ago",
-      category: "Animal Rhymes",
-      description: "Hathi raja kahan chale? Watch Elephant King visit Chintu's house for delicious sweets!",
-    },
-    {
-      title: "Chanda Mama Door Ke",
-      duration: "3:25",
-      views: "29.8K",
-      uploadDate: "2 weeks ago",
-      category: "Bedtime Rhyme",
-      description: "Gentle lullaby for preschoolers featuring Chanda Mama in the starry sky.",
-    },
-  ];
+  const { latestVideos } = useYouTube();
 
   return (
     <section className="relative py-8  md:py-12 lg:py-16 bg-[#FFFDF7] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="mb-8 lg:mb-12">
+        <div className="mb-8 lg:mb-12 flex justify-center flex-col items-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-[#FF4D4D]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#FF4D4D] mb-3">
             <Sparkles className="h-4 w-4" />
             <span>New Videos Every Week</span>
@@ -76,7 +28,7 @@ export const LatestVideosSection: React.FC<LatestVideosSectionProps> = ({
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#1F2937] tracking-tight leading-tight">
             Latest <span className="text-[#3B82F6]">Uploads</span>
           </h2>
-          <p className="mt-3 text-sm sm:text-base md:text-lg lg:text-xl text-zinc-600 font-medium max-w-2xl leading-relaxed">
+          <p className="mt-3 text-sm sm:text-base md:text-lg lg:text-xl text-zinc-600 text-center font-medium max-w-2xl leading-relaxed">
             Fresh 4K Hindi nursery rhymes and cartoon adventures uploaded every single week!
           </p>
         </div>
@@ -97,13 +49,21 @@ export const LatestVideosSection: React.FC<LatestVideosSectionProps> = ({
             >
               {/* Thumbnail Placeholder */}
               <div className="relative overflow-hidden aspect-video w-full bg-zinc-900">
-                <PlaceholderImage
-                  category="video"
-                  title={video.title}
-                  alt={`${video.category} • New Upload`}
-                  badge={video.category}
-                  className="h-full w-full transition-transform duration-500 group-hover:scale-110 !rounded-none"
-                />
+                {video.thumbnailUrl ? (
+                  <img
+                    src={video.thumbnailUrl}
+                    alt={video.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                ) : (
+                  <PlaceholderImage
+                    category="video"
+                    title={video.title}
+                    alt={`${video.category || "Video"} • New Upload`}
+                    badge={video.category}
+                    className="h-full w-full transition-transform duration-500 group-hover:scale-110 !rounded-none"
+                  />
+                )}
 
                 {/* Duration */}
                 <div className="absolute bottom-3 right-3 rounded-lg bg-black/80 backdrop-blur-md px-2.5 py-1 text-xs font-bold text-white flex items-center gap-1 shadow-md">

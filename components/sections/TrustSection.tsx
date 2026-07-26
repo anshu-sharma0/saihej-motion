@@ -88,16 +88,12 @@ export const TrustSection: React.FC = () => {
             return (
               <div
                 key={item.title}
-                className={`group relative flex flex-col rounded-3xl bg-white p-5 sm:p-6 lg:p-7 xl:p-8 border-2 ${item.borderColor} shadow-lg transition-all duration-300 card-hover-glow`}
+                className={`group relative flex flex-col rounded-3xl bg-white p-4 lg:p-6 border-2 ${item.borderColor} shadow-lg transition-all duration-300 `}
               >
-                {/* Checkmark badge */}
-                <div className="absolute top-5 right-5 sm:top-6 sm:right-6 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-[#FFFDF7] shadow-sm border border-zinc-200">
-                  <span className="text-xs font-black text-[#22C55E]">✓</span>
-                </div>
                 <div className="flex items-center mb-4 gap-3 sm:gap-4">
                   {/* Icon wrapper */}
                   <div
-                    className={`flex h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 items-center justify-center rounded-2xl ${item.bgColor} ${item.textColor} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}
+                    className={`flex h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 items-center justify-center rounded-2xl ${item.bgColor} ${item.textColor} transition-transform`}
                   >
                     <IconComponent className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
                   </div>

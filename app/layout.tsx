@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fredoka, Nunito, Poppins } from "next/font/google";
 import "./globals.css";
+import { YouTubeProvider } from "../context/YouTubeContext";
 
 const fredoka = Fredoka({
   variable: "--font-fredoka",
@@ -48,7 +49,9 @@ export default function RootLayout({
       className={`${fredoka.variable} ${nunito.variable} ${poppins.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#FFFDF7] text-[#1F2937] overflow-x-hidden selection:bg-[#FFD93D] selection:text-[#1F2937]">
-        {children}
+        <YouTubeProvider>
+          {children}
+        </YouTubeProvider>
       </body>
     </html>
   );

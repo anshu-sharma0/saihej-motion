@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Play, Sparkles, Menu, X, Heart } from "lucide-react";
 import confetti from "canvas-confetti";
 import { YouTubeIcon } from "../ui/SocialIcons";
+import { useYouTube } from "../../context/YouTubeContext";
 
 interface NavbarProps {
   onSubscribeClick?: () => void;
@@ -12,7 +13,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [subscriberCount, setSubscriberCount] = useState(1160);
+  const { stats, incrementSubscribers } = useYouTube();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
   }, []);
 
   const handleSubscribe = () => {
-    setSubscriberCount((prev) => prev + 1);
+    incrementSubscribers();
     confetti({
       particleCount: 100,
       spread: 80,
@@ -104,6 +105,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
 
           {/* Right Side: Subscribe CTA + Stats */}
           <div className="hidden lg:flex items-center gap-3">
+            <div className={`hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold shadow-sm ${
+              isScrolled ? "bg-[#FF4D4D]/10 text-[#FF4D4D] border border-[#FF4D4D]/20" : "bg-white/20 text-white backdrop-blur-md"
+            }`}>
+              <span>❤️</span>
+              <span>{stats.subscriberCount} Subs</span>
+            </div>
 
             <button
               onClick={handleSubscribe}

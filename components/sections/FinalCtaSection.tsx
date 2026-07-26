@@ -4,13 +4,17 @@ import React from "react";
 import { Sparkles, Star, Cloud, Music } from "lucide-react";
 import confetti from "canvas-confetti";
 import { SectionDivider } from "../ui/SectionDivider";
+import { useYouTube } from "../../context/YouTubeContext";
 
 interface FinalCtaSectionProps {
   onSubscribe?: () => void;
 }
 
 export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onSubscribe }) => {
+  const { stats, incrementSubscribers } = useYouTube();
+
   const handleSubscribe = () => {
+    incrementSubscribers();
     // Launch massive celebration confetti
     confetti({
       particleCount: 150,
@@ -78,7 +82,7 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onSubscribe })
         {/* Top Celebration Badge */}
         <div className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-md px-5 py-2 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#FFD93D] mb-6 shadow-lg border border-white/30 animate-bounce">
           <Sparkles className="h-4 w-4" />
-          <span>Join 1.16K+ Happy Families Worldwide</span>
+          <span>Join {stats.subscriberCount} Happy Families Worldwide</span>
         </div>
 
         {/* Heading */}

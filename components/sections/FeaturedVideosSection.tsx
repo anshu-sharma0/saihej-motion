@@ -5,6 +5,7 @@ import { Play, Clock, Eye, Calendar, Sparkles } from "lucide-react";
 import { PlaceholderImage } from "../ui/PlaceholderImage";
 import { VideoModalData } from "../modals/VideoPlayerModal";
 import { Carousel } from "../ui/Carousel";
+import { useYouTube } from "../../context/YouTubeContext";
 
 interface FeaturedVideosSectionProps {
   onSelectVideo: (video: VideoModalData) => void;
@@ -13,62 +14,7 @@ interface FeaturedVideosSectionProps {
 export const FeaturedVideosSection: React.FC<FeaturedVideosSectionProps> = ({
   onSelectVideo,
 }) => {
-  const popularVideos: VideoModalData[] = [
-    {
-      title: "Kalu Madari Aaya",
-      duration: "2:45",
-      views: "28.5K",
-      uploadDate: "2 weeks ago",
-      category: "Hindi Rhymes",
-      description:
-        "Join Chintu and his funny monkey friend in this classic 4K Hindi nursery rhyme Kalu Madari Aaya!",
-    },
-    {
-      title: "Ek Mota Hathi",
-      duration: "3:12",
-      views: "34.2K",
-      uploadDate: "1 month ago",
-      category: "Animal Rhymes",
-      description:
-        "Watch the friendly elephant walk along the spider web in colourful Disney-style 3D animation!",
-    },
-    {
-      title: "Gaiya Meri Gaiya",
-      duration: "2:58",
-      views: "19.8K",
-      uploadDate: "3 weeks ago",
-      category: "Hindi Nursery Rhymes",
-      description:
-        "A heartwarming song celebrating our lovely cows with gentle music and vibrant countryside scenes.",
-    },
-    {
-      title: "Billi Mausi",
-      duration: "2:20",
-      views: "25.1K",
-      uploadDate: "1 month ago",
-      category: "Cartoon Stories",
-      description:
-        "Billi Mausi Billi Mausi kaho kahan se aayi ho! Sing along with the mischievous cat and mouse adventure.",
-    },
-    {
-      title: "Machli Jal Ki Rani",
-      duration: "2:50",
-      views: "42.7K",
-      uploadDate: "2 months ago",
-      category: "Top Hindi Rhyme",
-      description:
-        "Our most popular underwater 3D animation! Machli Jal Ki Rani Hai, Jeevan Uska Paani Hai in 4K.",
-    },
-    {
-      title: "Aloo Kachaloo",
-      duration: "3:05",
-      views: "31.4K",
-      uploadDate: "3 weeks ago",
-      category: "Fun Vegetable Song",
-      description:
-        "Aloo Kachaloo Beta Kahan Gaye They? Laugh and dance with happy vegetable characters in the garden!",
-    },
-  ];
+  const { featuredVideos } = useYouTube();
 
   return (
     <section
@@ -98,7 +44,7 @@ export const FeaturedVideosSection: React.FC<FeaturedVideosSectionProps> = ({
           tabletSlidesPerView={2.15}
           gapPx={24}
         >
-          {popularVideos.map((video) => (
+          {featuredVideos.map((video) => (
             <div
               key={video.title}
               onClick={() => onSelectVideo(video)}
@@ -106,13 +52,21 @@ export const FeaturedVideosSection: React.FC<FeaturedVideosSectionProps> = ({
             >
               {/* Thumbnail */}
               <div className="relative overflow-hidden aspect-video w-full bg-zinc-900">
-                <PlaceholderImage
-                  category="video"
-                  title={video.title}
-                  alt={`${video.category} • 4K Hindi Rhyme`}
-                  badge={video.category}
-                  className="h-full w-full transition-transform duration-500 group-hover:scale-110 !rounded-none"
-                />
+                {video.thumbnailUrl ? (
+                  <img
+                    src={video.thumbnailUrl}
+                    alt={video.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                ) : (
+                  <PlaceholderImage
+                    category="video"
+                    title={video.title}
+                    alt={`${video.category || "Video"} • 4K Hindi Rhyme`}
+                    badge={video.category}
+                    className="h-full w-full transition-transform duration-500 group-hover:scale-110 !rounded-none"
+                  />
+                )}
 
                 {/* Duration Tag */}
                 <div className="absolute bottom-3 right-3 rounded-lg bg-black/80 backdrop-blur-md px-2.5 py-1 text-xs font-bold text-white flex items-center gap-1 shadow-md">

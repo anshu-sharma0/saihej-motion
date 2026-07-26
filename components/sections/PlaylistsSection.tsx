@@ -5,6 +5,8 @@ import { ListVideo, Play, Sparkles } from "lucide-react";
 import { PlaceholderImage } from "../ui/PlaceholderImage";
 import { VideoModalData } from "../modals/VideoPlayerModal";
 import { Carousel } from "../ui/Carousel";
+import { useYouTube } from "../../context/YouTubeContext";
+import { YouTubePlaylist } from "../../lib/youtube";
 
 interface PlaylistsSectionProps {
   onSelectPlaylist?: (playlist: { title: string; count: string; description: string }) => void;
@@ -15,45 +17,9 @@ export const PlaylistsSection: React.FC<PlaylistsSectionProps> = ({
   onSelectPlaylist,
   onOpenVideo,
 }) => {
-  const playlists = [
-    {
-      title: "🎭 Chintu Cartoon Series",
-      videoCount: "18+ Videos",
-      shortDescription:
-        "Hilarious 4K animated stories and moral adventures with Chintu and his woodland friends.",
-      badge: "Series",
-    },
-    {
-      title: "🐵 Bandar Mama Series",
-      videoCount: "14+ Videos",
-      shortDescription:
-        "Bandar Mama Pahan Pajama! Funny monkey songs and jungle escapades for preschoolers.",
-      badge: "Kids Favorite",
-    },
-    {
-      title: "🌟 Top Hindi Rhymes Collection",
-      videoCount: "45+ Videos",
-      shortDescription:
-        "Non-stop Hindi nursery rhymes and traditional songs perfect for sing-alongs and bedtime.",
-      badge: "Best Seller",
-    },
-    {
-      title: "😂 Funny Kids Shorts",
-      videoCount: "80+ Shorts",
-      shortDescription:
-        "Bite-sized 60-second fun rhymes, quick dances, and Chintu's hilarious moments.",
-      badge: "Trending",
-    },
-    {
-      title: "🎉 Festival Songs",
-      videoCount: "12+ Videos",
-      shortDescription:
-        "Celebrate Diwali, Holi, Raksha Bandhan, and Indian festivals with festive children's songs.",
-      badge: "Cultural",
-    },
-  ];
+  const { playlists } = useYouTube();
 
-  const handlePlaylistClick = (pl: typeof playlists[0]) => {
+  const handlePlaylistClick = (pl: YouTubePlaylist) => {
     if (onOpenVideo) {
       onOpenVideo({
         title: pl.title,
@@ -109,13 +75,21 @@ export const PlaylistsSection: React.FC<PlaylistsSectionProps> = ({
             >
               {/* Cover Placeholder */}
               <div className="relative aspect-video w-full bg-zinc-900">
-                <PlaceholderImage
-                  category="playlist"
-                  title={playlist.title}
-                  alt={playlist.shortDescription}
-                  badge={playlist.badge}
-                  className="h-full w-full transition-transform duration-500 group-hover:scale-105 !rounded-none"
-                />
+                {playlist.thumbnailUrl ? (
+                  <img
+                    src={playlist.thumbnailUrl}
+                    alt={playlist.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <PlaceholderImage
+                    category="playlist"
+                    title={playlist.title}
+                    alt={playlist.shortDescription}
+                    badge={playlist.badge}
+                    className="h-full w-full transition-transform duration-500 group-hover:scale-105 !rounded-none"
+                  />
+                )}
 
                 {/* Video Count Tag */}
                 <div className="absolute bottom-4 right-4 rounded-xl bg-black/80 backdrop-blur-md px-3 py-1.5 text-xs font-extrabold text-[#FFD93D] flex items-center gap-1.5 shadow-lg border border-white/10">
