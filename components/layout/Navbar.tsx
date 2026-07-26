@@ -46,10 +46,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
   const navLinks = [
     { name: "Home", href: "#hero" },
     { name: "Videos", href: "#featured-videos" },
-    { name: "Playlists", href: "#playlists" },
-    { name: "About", href: "#chintu" },
     { name: "FAQ", href: "#faq" },
-    { name: "Contact", href: "#footer" },
+    // { name: "Contact", href: "#footer" },
   ];
 
   return (
