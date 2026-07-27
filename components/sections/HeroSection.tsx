@@ -31,7 +31,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <section
       id="hero"
-      className="relative w-full aspect-[864/1821] md:aspect-auto md:min-h-screen flex flex-col items-center justify-center overflow-hidden"
+      className="relative w-full aspect-[864/1821] md:aspect-auto md:min-h-[75vh] lg:min-h-screen flex flex-col items-center justify-center overflow-hidden"
     >
       {/* FULL-WIDTH EDGE-TO-EDGE HERO ILLUSTRATION PLACEHOLDER */}
       <div className="absolute inset-0 z-0">
@@ -59,7 +59,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       </div>
 
       {/* Hero Action Buttons (Subscribe Now & Watch Videos) */}
-      <div className="absolute bottom-42 lg:bottom-32 left-1/2 -translate-x-1/2 z-30 flex flex-wrap items-center justify-center gap-3 sm:gap-4 w-full px-4">
+      <div className="absolute bottom-36 md:bottom-32 lg:bottom-28 left-1/2 -translate-x-1/2 z-30 flex flex-wrap items-center justify-center gap-3 sm:gap-4 w-full px-4">
         <button
           onClick={handleSubscribe}
           className="group relative inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-[#FF0000] via-[#FF3333] to-[#FF0000] px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-extrabold text-white shadow-[0_8px_30px_rgba(255,0,0,0.5)] transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_40px_rgba(255,0,0,0.7)] active:scale-95 cursor-pointer border-2 border-white/30"
@@ -69,7 +69,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       </div>
 
       {/* Floating Live YouTube Stats Bar with Rainbow Glow */}
-      <div className="absolute bottom-10 sm:bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-wrap items-center justify-center gap-2 sm:gap-4 px-4 sm:px-6 py-2.5 rounded-full bg-[#0F1123]/85 backdrop-blur-xl border-2 border-[#FFD93D]/60 shadow-[0_0_35px_rgba(255,217,61,0.35)] hover:scale-105 transition-all duration-300">
+      <div className="absolute bottom-8 md:bottom-10 lg:bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-wrap items-center justify-center gap-2 sm:gap-4 px-4 sm:px-6 py-2.5 rounded-full bg-[#0F1123]/85 backdrop-blur-xl border-2 border-[#FFD93D]/60 shadow-[0_0_35px_rgba(255,217,61,0.35)] hover:scale-105 transition-all duration-300">
         <span className="flex items-center gap-1.5 text-xs sm:text-sm font-black text-white">
           <span>❤️</span>
           <span className="text-[#FFD93D]">{stats.subscriberCount}</span>

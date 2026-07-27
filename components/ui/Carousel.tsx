@@ -228,31 +228,34 @@ export const Carousel: React.FC<CarouselProps> = ({
       {/* Large Navigation Arrows for Tablet / Carousel Desktop Mode */}
       {showArrows && (
         <div
-          className={`hidden sm:flex items-center justify-between pointer-events-none absolute inset-y-0 -left-4 -right-4 lg:-left-6 lg:-right-6 z-20 ${isDesktopGrid ? "lg:hidden" : ""
-            }`}
+          className={`hidden sm:flex items-center justify-between pointer-events-none absolute inset-y-0 -left-3 -right-3 md:-left-5 md:-right-5 lg:-left-6 lg:-right-6 z-20 ${
+            isDesktopGrid ? "lg:hidden" : ""
+          }`}
         >
           <button
             onClick={scrollPrev}
             disabled={activeIndex === 0}
             aria-label="Previous slide"
-            className={`pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full bg-white/95 backdrop-blur-md border-2 border-zinc-200 text-[#1F2937] shadow-lg transition-all duration-300 cursor-pointer ${activeIndex === 0
-              ? "opacity-30 cursor-not-allowed scale-95"
-              : "hover:border-[#FF4D4D] hover:text-[#FF4D4D] hover:scale-110 hover:shadow-xl"
-              }`}
+            className={`pointer-events-auto flex h-11 w-11 md:h-12 md:w-12 items-center justify-center rounded-full bg-white/95 backdrop-blur-md border-2 border-zinc-200 text-[#1F2937] shadow-lg transition-all duration-300 cursor-pointer ${
+              activeIndex === 0
+                ? "opacity-30 cursor-not-allowed scale-95"
+                : "hover:border-[#FF4D4D] hover:text-[#FF4D4D] hover:scale-110 hover:shadow-xl active:scale-95"
+            }`}
           >
-            <ChevronLeft className="h-6 w-6" />
+            <ChevronLeft className="h-6 w-6 md:h-7 md:w-7" />
           </button>
 
           <button
             onClick={scrollNext}
             disabled={activeIndex >= maxIndex}
             aria-label="Next slide"
-            className={`pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full bg-white/95 backdrop-blur-md border-2 border-zinc-200 text-[#1F2937] shadow-lg transition-all duration-300 cursor-pointer ${activeIndex >= maxIndex
-              ? "opacity-30 cursor-not-allowed scale-95"
-              : "hover:border-[#FF4D4D] hover:text-[#FF4D4D] hover:scale-110 hover:shadow-xl"
-              }`}
+            className={`pointer-events-auto flex h-11 w-11 md:h-12 md:w-12 items-center justify-center rounded-full bg-white/95 backdrop-blur-md border-2 border-zinc-200 text-[#1F2937] shadow-lg transition-all duration-300 cursor-pointer ${
+              activeIndex >= maxIndex
+                ? "opacity-30 cursor-not-allowed scale-95"
+                : "hover:border-[#FF4D4D] hover:text-[#FF4D4D] hover:scale-110 hover:shadow-xl active:scale-95"
+            }`}
           >
-            <ChevronRight className="h-6 w-6" />
+            <ChevronRight className="h-6 w-6 md:h-7 md:w-7" />
           </button>
         </div>
       )}

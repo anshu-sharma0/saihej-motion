@@ -112,13 +112,13 @@ export const WhyParentsLoveUsSection: React.FC = () => {
         </div>
 
         {/* 8 Large Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6 lg:gap-6 xl:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-6 lg:gap-8">
           {reasons.map((reason, idx) => {
             const IconComponent = reason.icon;
             return (
               <div
                 key={reason.title}
-                className="group relative flex flex-col rounded-3xl card-glass-playground p-5 sm:p-6 lg:p-6 xl:p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#FF4D4D]"
+                className="group relative flex flex-col justify-between rounded-3xl card-glass-playground p-5 sm:p-6 md:p-6 lg:p-6 xl:p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#FF4D4D]"
               >
                 {/* Rainbow Card Top Accent */}
                 <div className={`absolute top-0 left-6 right-6 h-1 rounded-b-full bg-gradient-to-r ${reason.color}`} />
@@ -131,12 +131,12 @@ export const WhyParentsLoveUsSection: React.FC = () => {
                 <div className="flex items-center mb-2 gap-3 sm:gap-4">
                   {/* Icon wrapper */}
                   <div
-                    className={`flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl ${reason.accent} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
+                    className={`flex h-12 w-12 sm:h-14 sm:w-14 md:h-14 md:w-14 shrink-0 items-center justify-center rounded-2xl ${reason.accent} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
                   >
-                    <IconComponent className="h-6 w-6 sm:h-7 sm:w-7" />
+                    <IconComponent className="h-6 w-6 sm:h-7 sm:w-7 md:h-7 md:w-7" />
                   </div>
 
-                  <h3 className="text-lg sm:text-xl lg:text-xl xl:text-2xl font-extrabold text-[#1F2937] group-hover:text-[#FF4D4D] transition-colors">
+                  <h3 className="text-lg sm:text-xl md:text-xl lg:text-xl xl:text-2xl font-extrabold text-[#1F2937] group-hover:text-[#FF4D4D] transition-colors">
                     {reason.title}
                   </h3>
                 </div>

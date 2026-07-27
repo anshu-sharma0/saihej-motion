@@ -105,7 +105,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
           </nav>
 
           {/* Right Side: Subscribe CTA + Stats */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-2 lg:gap-3">
             <div className={`hidden xl:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-extrabold shadow-sm ${isScrolled ? "bg-gradient-to-r from-[#FF4D4D]/10 to-[#FFD93D]/15 text-[#FF4D4D] border border-[#FF4D4D]/20" : "bg-white/20 text-white backdrop-blur-md"
               }`}>
               <span>❤️</span>
@@ -114,7 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
 
             <button
               onClick={handleSubscribe}
-              className="btn-3d-red px-5 py-2 text-sm flex items-center gap-2 cursor-pointer"
+              className="btn-3d-red px-4 py-1.5 lg:px-5 lg:py-2 text-xs lg:text-sm flex items-center gap-1.5 lg:gap-2 cursor-pointer"
             >
               <YouTubeIcon className="h-4 w-4" />
               <span>Subscribe</span>

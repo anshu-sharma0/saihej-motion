@@ -41,7 +41,7 @@ export const ShortsSection: React.FC<ShortsSectionProps> = ({ onSelectShort }) =
           desktopMode="carousel"
           desktopSlidesPerView={4.2}
           mobileSlidesPerView={1.5}
-          tabletSlidesPerView={3.2}
+          tabletSlidesPerView={3.25}
           gapPx={16}
         >
           {shorts.map((short) => (
