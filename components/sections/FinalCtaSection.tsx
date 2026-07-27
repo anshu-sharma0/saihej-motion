@@ -5,6 +5,7 @@ import { Sparkles, Star, Cloud, Music } from "lucide-react";
 import confetti from "canvas-confetti";
 import { SectionDivider } from "../ui/SectionDivider";
 import { useYouTube } from "../../context/YouTubeContext";
+import { YouTubeIcon } from "../ui/SocialIcons";
 
 interface FinalCtaSectionProps {
   onSubscribe?: () => void;
@@ -83,7 +84,7 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onSubscribe })
 
       {/* Main Centered Content inside Glowing Glass Card */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-        <div className="w-full rounded-[40px] bg-white/10 backdrop-blur-2xl border-2 border-white/30 p-8 sm:p-12 lg:p-16 shadow-[0_25px_60px_rgba(0,0,0,0.3)]">
+        <div className="w-full rounded-[40px] bg-white/10 backdrop-blur-2xl border-2 border-white/30 p-6 lg:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.3)]">
           {/* Top Celebration Badge */}
           <div className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-md px-5 py-2 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#FFD93D] mb-6 shadow-lg border border-white/30 animate-bounce">
             <Sparkles className="h-4 w-4" />
@@ -97,7 +98,7 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onSubscribe })
           </h2>
 
           {/* Text */}
-          <p className="max-w-3xl mx-auto text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 font-medium leading-relaxed mb-10 drop-shadow-md">
+          <p className="max-w-3xl mx-auto text-base sm:text-lg lg:text-xl text-blue-100 font-medium leading-relaxed mb-6 drop-shadow-md">
             Join thousands of families enjoying fun-filled Hindi nursery rhymes, educational
             songs and Chintu&apos;s exciting adventures every week.
           </p>
@@ -106,11 +107,12 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onSubscribe })
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto">
             <button
               onClick={handleSubscribe}
-              className="btn-3d-red w-full sm:w-auto px-8 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 text-base sm:text-lg md:text-xl lg:text-2xl font-black flex items-center justify-center gap-3 cursor-pointer shadow-2xl transition-transform hover:scale-105"
+              className="btn-3d-red w-full sm:w-auto px-8 py-4 sm:px-10 lg:px-12 text-base sm:text-lg lg:text-md font-black flex items-center justify-center gap-3 cursor-pointer shadow-2xl transition-transform hover:scale-102"
             >
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#FF4D4D] text-sm">
+              {/* <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#FF4D4D] text-sm">
                 🔴
-              </span>
+              </span> */}
+              <YouTubeIcon className="h-5 w-5" />
               <span>Subscribe on YouTube</span>
             </button>
           </div>

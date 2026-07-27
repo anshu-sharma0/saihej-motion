@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer id="footer" className="relative bg-gradient-to-b from-[#1E2530] via-[#1A202C] to-[#0F131A] text-white pt-16 pb-12 overflow-hidden">
+    <footer id="footer" className="relative bg-gradient-to-b from-[#1E2530] via-[#1A202C] to-[#0F131A] text-white pt-12 pb-8 overflow-hidden">
       {/* Dynamic 4-Color Rainbow Top Accent Strip */}
       <div className="absolute top-0 right-0 left-0 h-2 bg-gradient-to-r from-[#FF4D4D] via-[#FFD93D] via-[#22C55E] to-[#3B82F6]" />
 
