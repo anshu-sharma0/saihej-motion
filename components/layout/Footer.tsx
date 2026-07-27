@@ -65,9 +65,9 @@ export const Footer: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top 4-Column Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 xl:gap-10 pb-8 border-b border-zinc-700/80">
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 xl:gap-10 pb-8 border-b border-zinc-700/80">
           {/* Col 1: Logo, Channel Bio & Social Media Pills (4 cols) */}
-          <div className="sm:col-span-2 lg:col-span-4 flex flex-col items-start">
+          <div className="col-span-2 md:col-span-12 lg:col-span-4 flex flex-col items-start">
             <a href="#hero" className="flex items-center gap-3 text-decoration-none group">
               <Image
                 src="/logo.png"
@@ -135,7 +135,7 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Col 2: Quick Links (2 cols) */}
-          <div className="sm:col-span-1 lg:col-span-2">
+          <div className="col-span-1 md:col-span-4 lg:col-span-2">
             <h4 className="font-extrabold text-base text-[#FFD93D] uppercase tracking-wider mb-4">
               Quick Links
             </h4>
@@ -155,7 +155,7 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Col 3: Popular Videos (3 cols) */}
-          <div className="lg:col-span-3">
+          <div className="col-span-1 md:col-span-4 lg:col-span-3">
             <h4 className="font-extrabold text-base text-[#FFD93D] uppercase tracking-wider mb-4">
               Popular Videos
             </h4>
@@ -177,7 +177,7 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Col 4: Playlists & Contact (3 cols) */}
-          <div className="lg:col-span-3">
+          <div className="col-span-2 md:col-span-4 lg:col-span-3">
             <h4 className="font-extrabold text-base text-[#FFD93D] uppercase tracking-wider mb-4">
               Playlists &amp; Contact
             </h4>
