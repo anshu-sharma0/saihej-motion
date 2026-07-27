@@ -47,7 +47,7 @@ export const FaqSection: React.FC = () => {
   ];
 
   return (
-    <section id="faq" className="relative py-12 md:py-16 lg:py-20 bg-gradient-playground-blue overflow-hidden">
+    <section id="faq" className="relative py-8 lg:py-14 bg-gradient-playground-blue overflow-hidden">
       {/* Decorative Ambient Background Orbs */}
       <div className="absolute top-1/3 left-[5%] w-72 h-72 rounded-full bg-[#FFD93D]/20 blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/3 right-[5%] w-80 h-80 rounded-full bg-[#3B82F6]/15 blur-3xl pointer-events-none" />

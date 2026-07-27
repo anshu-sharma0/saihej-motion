@@ -53,8 +53,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
-        ? "bg-white/85 backdrop-blur-xl border-b-2 border-[#FFD93D]/40 shadow-xl shadow-[#3B82F6]/5 py-2.5"
-        : "bg-transparent py-5"
+        ? "bg-white/85 backdrop-blur-xl border-b-2 border-[#FFD93D]/40 shadow-xl shadow-[#3B82F6]/5 py-3"
+        : "bg-transparent py-3"
         }`}
     >
       {/* 3-Color Rainbow Top Accent Strip */}
@@ -72,9 +72,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
             <Image
               src="/logo.png"
               alt="logo"
-              width={50}
-              height={50}
-              className="object-contain transition-transform duration-300 group-hover:scale-105"
+              width={48}
+              height={48}
+              className="object-contain"
             />
             <div className="flex flex-col">
               <span className={`font-extrabold text-lg sm:text-xl lg:text-2xl leading-none tracking-tight transition-colors ${isScrolled ? "text-[#1F2937]" : "text-white"
@@ -114,7 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
 
             <button
               onClick={handleSubscribe}
-              className="btn-3d-red px-5 py-2.5 text-sm flex items-center gap-2 cursor-pointer"
+              className="btn-3d-red px-5 py-2 text-sm flex items-center gap-2 cursor-pointer"
             >
               <YouTubeIcon className="h-4 w-4" />
               <span>Subscribe</span>

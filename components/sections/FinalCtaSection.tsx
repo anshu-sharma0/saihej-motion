@@ -32,7 +32,7 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onSubscribe })
   };
 
   return (
-    <section className="relative py-12 md:py-20 overflow-hidden text-white bg-gradient-to-br from-[#3B82F6] via-[#2563EB] to-[#1E40AF]">
+    <section className="relative py-8 lg:py-12 overflow-hidden text-white bg-gradient-to-br from-[#3B82F6] via-[#2563EB] to-[#1E40AF]">
       {/* Curved Top Section Divider */}
       <SectionDivider position="top" color="#FFFDF7" variant="clouds" />
 

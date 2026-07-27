@@ -90,7 +90,7 @@ export const WhyParentsLoveUsSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative py-12 md:py-16 lg:py-20 bg-gradient-sunset-yellow overflow-hidden">
+    <section className="relative py-8 lg:py-14 bg-gradient-sunset-yellow overflow-hidden">
       {/* Decorative Ambient Glowing Orbs */}
       <div className="absolute top-12 right-[8%] w-72 h-72 rounded-full bg-[#FF4D4D]/15 blur-3xl pointer-events-none" />
       <div className="absolute bottom-12 left-[8%] w-80 h-80 rounded-full bg-[#FFD93D]/20 blur-3xl pointer-events-none" />

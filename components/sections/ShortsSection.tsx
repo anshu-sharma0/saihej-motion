@@ -15,7 +15,7 @@ export const ShortsSection: React.FC<ShortsSectionProps> = ({ onSelectShort }) =
   const { shorts } = useYouTube();
 
   return (
-    <section className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-playground-warm overflow-hidden">
+    <section className="relative py-8 lg:py-14 bg-gradient-playground-warm overflow-hidden">
       {/* Decorative floating blobs */}
       <div className="absolute top-10 right-10 w-80 h-80 bg-[#FF4D4D]/15 rounded-full blur-3xl opacity-70 pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-80 h-80 bg-[#3B82F6]/15 rounded-full blur-3xl opacity-70 pointer-events-none" />
@@ -53,47 +53,47 @@ export const ShortsSection: React.FC<ShortsSectionProps> = ({ onSelectShort }) =
               <div className="flex flex-col h-full w-full rounded-[21px] bg-white overflow-hidden">
                 {/* Vertical 9:16 Thumbnail */}
                 <div className="relative overflow-hidden aspect-[9/16] w-full bg-zinc-900">
-                {short.thumbnailUrl ? (
-                  <img
-                    src={short.thumbnailUrl}
-                    alt={short.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                ) : (
-                  <PlaceholderImage
-                    category="video"
-                    title={short.title}
-                    alt={`${short.category || "Shorts"} • Shorts`}
-                    aspectRatio="vertical"
-                    badge="SHORTS"
-                    className="h-full w-full transition-transform duration-500 group-hover:scale-110 !rounded-none"
-                  />
-                )}
+                  {short.thumbnailUrl ? (
+                    <img
+                      src={short.thumbnailUrl}
+                      alt={short.title}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  ) : (
+                    <PlaceholderImage
+                      category="video"
+                      title={short.title}
+                      alt={`${short.category || "Shorts"} • Shorts`}
+                      aspectRatio="vertical"
+                      badge="SHORTS"
+                      className="h-full w-full transition-transform duration-500 group-hover:scale-110 !rounded-none"
+                    />
+                  )}
 
-                {/* Duration badge */}
-                <div className="absolute top-3 right-3 rounded-md bg-black/70 backdrop-blur-md px-2 py-0.5 text-[10px] font-extrabold text-white">
-                  {short.duration}
-                </div>
-
-                {/* Play Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#FF4D4D] text-white shadow-xl transition-transform duration-300 group-hover:scale-110">
-                    <Play className="h-6 w-6 fill-current ml-0.5" />
+                  {/* Duration badge */}
+                  <div className="absolute top-3 right-3 rounded-md bg-black/70 backdrop-blur-md px-2 py-0.5 text-[10px] font-extrabold text-white">
+                    {short.duration}
                   </div>
-                </div>
 
-                {/* Bottom overlay with title and views */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-3.5 text-white">
-                  <div className="flex items-center gap-1 text-[11px] font-bold text-[#FFD93D] mb-1">
-                    <Eye className="h-3 w-3" />
-                    <span>{short.views} views</span>
+                  {/* Play Button Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#FF4D4D] text-white shadow-xl transition-transform duration-300 group-hover:scale-110">
+                      <Play className="h-6 w-6 fill-current ml-0.5" />
+                    </div>
                   </div>
-                  <h3 className="text-xs sm:text-sm font-extrabold leading-tight text-white line-clamp-2">
-                    {short.title}
-                  </h3>
+
+                  {/* Bottom overlay with title and views */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-3.5 text-white">
+                    <div className="flex items-center gap-1 text-[11px] font-bold text-[#FFD93D] mb-1">
+                      <Eye className="h-3 w-3" />
+                      <span>{short.views} views</span>
+                    </div>
+                    <h3 className="text-xs sm:text-sm font-extrabold leading-tight text-white line-clamp-2">
+                      {short.title}
+                    </h3>
+                  </div>
                 </div>
               </div>
-            </div>
             </div>
           ))}
         </Carousel>

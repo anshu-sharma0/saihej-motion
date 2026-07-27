@@ -19,7 +19,7 @@ export const FeaturedVideosSection: React.FC<FeaturedVideosSectionProps> = ({
   return (
     <section
       id="featured-videos"
-      className="relative py-12 md:py-16 lg:py-20 bg-gradient-playground-blue overflow-hidden"
+      className="relative py-8 lg:py-14 bg-gradient-playground-blue overflow-hidden"
     >
       {/* Decorative Ambient Background Orbs */}
       <div className="absolute top-1/4 right-[10%] w-80 h-80 rounded-full bg-[#3B82F6]/15 blur-3xl pointer-events-none" />

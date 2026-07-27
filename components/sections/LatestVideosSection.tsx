@@ -17,7 +17,7 @@ export const LatestVideosSection: React.FC<LatestVideosSectionProps> = ({
   const { latestVideos } = useYouTube();
 
   return (
-    <section className="relative py-12 md:py-16 lg:py-20 bg-gradient-playground-warm overflow-hidden">
+    <section className="relative py-8 lg:py-14 bg-gradient-playground-warm overflow-hidden">
       {/* Decorative Ambient Background Orbs */}
       <div className="absolute top-1/4 left-[10%] w-72 h-72 rounded-full bg-[#FF4D4D]/15 blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 right-[10%] w-80 h-80 rounded-full bg-[#3B82F6]/15 blur-3xl pointer-events-none" />

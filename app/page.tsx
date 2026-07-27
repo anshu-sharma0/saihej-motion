@@ -68,7 +68,7 @@ export default function Home() {
         <ShortsSection onSelectShort={handleOpenVideoDirectly} />
 
         {/* FAQ Accordion Section (5 questions) */}
-        <FaqSection />
+        {/* <FaqSection /> */}
 
         {/* Final CTA Rainbow & Confetti Section */}
         <FinalCtaSection onSubscribe={handleGlobalSubscribe} />

@@ -1,10 +1,37 @@
 "use client";
 
-import React from "react";
-import { Heart } from "lucide-react";
+import React, { useState } from "react";
+import {
+  Heart,
+  Mail, Sparkles
+} from "lucide-react";
 import Image from "next/image";
+import { YouTubeIcon, InstagramIcon } from "../ui/SocialIcons";
 
 export const Footer: React.FC = () => {
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleCopyEmail = (email: string) => {
+    try {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(email);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = email;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+      }
+      setCopiedEmail(true);
+      setTimeout(() => {
+        setCopiedEmail(false);
+      }, 2500);
+    } catch (err) {
+      console.error("Failed to copy email:", err);
+    }
+  };
+
   const quickLinks = [
     { name: "Home", href: "#hero" },
     { name: "Videos", href: "#featured-videos" },
@@ -38,8 +65,8 @@ export const Footer: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top 4-Column Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 xl:gap-10 pb-12 border-b border-zinc-700/80">
-          {/* Col 1: Logo & Channel Bio (4 cols) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 xl:gap-10 pb-8 border-b border-zinc-700/80">
+          {/* Col 1: Logo, Channel Bio & Social Media Pills (4 cols) */}
           <div className="sm:col-span-2 lg:col-span-4 flex flex-col items-start">
             <a href="#hero" className="flex items-center gap-3 text-decoration-none group">
               <Image
@@ -65,10 +92,50 @@ export const Footer: React.FC = () => {
               for toddlers and preschool children aged 2–8 years.
             </p>
 
+            {/* Social Media Icons Bar */}
+            <div className="mt-6 border-t border-zinc-800/80 w-full">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-[#FFD93D] flex items-center gap-1.5 mb-3">
+                <Sparkles className="h-3.5 w-3.5 text-[#FFD93D]" />
+                <span>Follow &amp; Connect Across Socials</span>
+              </span>
+              <div className="flex flex-wrap items-center gap-2.5">
+                {/* YouTube Pill */}
+                <a
+                  href="https://www.youtube.com/@SaihejMotion/videos"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-zinc-800/80 hover:bg-[#FF4D4D]/15 border border-zinc-700/80 hover:border-[#FF4D4D]/50 text-white hover:text-[#FF4D4D] text-xs font-extrabold transition-all duration-200 group/pill shadow-sm"
+                >
+                  <YouTubeIcon className="w-4 h-4 text-[#FF4D4D]" />
+                  <span>YouTube</span>
+                </a>
+
+                {/* Instagram Pill */}
+                <a
+                  href="https://www.instagram.com/saihejmotion"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-zinc-800/80 hover:bg-pink-500/15 border border-zinc-700/80 hover:border-pink-500/50 text-white hover:text-pink-400 text-xs font-extrabold transition-all duration-200 group/pill shadow-sm"
+                >
+                  <InstagramIcon className="w-4 h-4 text-pink-500" />
+                  <span>Instagram</span>
+                </a>
+
+                {/* Gmail Pill */}
+                <a
+                  href="mailto:punjab.sabbi@gmail.com"
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl bg-zinc-800/80 hover:bg-emerald-500/15 border border-zinc-700/80 hover:border-emerald-500/50 text-white hover:text-emerald-400 text-xs font-extrabold transition-all duration-200 group/pill shadow-sm"
+                >
+                  <Mail className="w-4 h-4 text-emerald-500" />
+                  <span>Gmail</span>
+                </a>
+
+              </div>
+            </div>
           </div>
 
           {/* Col 2: Quick Links (2 cols) */}
-          <div className="lg:col-span-2">
+          <div className="sm:col-span-1 lg:col-span-2">
             <h4 className="font-extrabold text-base text-[#FFD93D] uppercase tracking-wider mb-4">
               Quick Links
             </h4>
