@@ -233,3 +233,64 @@
   animation: swipe-bounce 2s ease-in-out infinite;
 }
 
+/* ========================================================
+   DISNEY-PIXAR & NICKELODEON INSPIRED GRADIENT UI SYSTEM
+   ======================================================== */
+
+/* Rich Ambient Multi-Stop Background Gradients */
+.bg-gradient-playground-warm {
+  background: linear-gradient(180deg, #FFFDF7 0%, #FFF8E7 40%, #FFF0F3 75%, #FFFDF7 100%);
+}
+
+.bg-gradient-playground-blue {
+  background: linear-gradient(180deg, #FFFDF7 0%, #F0F7FF 35%, #FFFCE8 75%, #FFFDF7 100%);
+}
+
+.bg-gradient-sunset-yellow {
+  background: linear-gradient(180deg, #FFFDF7 0%, #FFF5F5 30%, #FFFCE8 70%, #FFFDF7 100%);
+}
+
+.bg-gradient-aurora-rainbow {
+  background: linear-gradient(135deg, #FF4D4D 0%, #FFD93D 50%, #3B82F6 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Animated 3D Rainbow Gradient Border Frame */
+.border-gradient-rainbow {
+  position: relative;
+  background: linear-gradient(135deg, #FF4D4D, #FFD93D, #22C55E, #3B82F6, #FF4D4D);
+  background-size: 300% 300%;
+  animation: rainbow-flow 6s linear infinite;
+}
+
+@keyframes rainbow-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glassmorphic Playful Card Containers */
+.card-glass-playground {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 15px 35px -10px rgba(255, 77, 77, 0.08), 0 10px 25px -5px rgba(59, 130, 246, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-glass-playground:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 50px -12px rgba(255, 77, 77, 0.15), 0 0 0 3px rgba(255, 217, 61, 0.5);
+    border-color: #FFD93D;
+  }
+}
+

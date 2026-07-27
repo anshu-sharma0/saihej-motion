@@ -31,9 +31,13 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onSubscribe })
   };
 
   return (
-    <section className="relative py-8 md:py-18 overflow-hidden text-white bg-gradient-to-br from-[#3B82F6] via-[#2563EB] to-[#1E40AF]">
+    <section className="relative py-12 md:py-20 overflow-hidden text-white bg-gradient-to-br from-[#3B82F6] via-[#2563EB] to-[#1E40AF]">
       {/* Curved Top Section Divider */}
       <SectionDivider position="top" color="#FFFDF7" variant="clouds" />
+
+      {/* Decorative Floating Ambient Glow Orbs */}
+      <div className="absolute top-1/4 left-10 w-96 h-96 rounded-full bg-[#FF4D4D]/30 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-[#FFD93D]/35 blur-3xl pointer-events-none" />
 
       {/* RAINBOW & FLOATING SHAPES BACKGROUND ARTWORK */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-30">
@@ -77,44 +81,46 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onSubscribe })
         </div>
       </div>
 
-      {/* Main Centered Content */}
+      {/* Main Centered Content inside Glowing Glass Card */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-        {/* Top Celebration Badge */}
-        <div className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-md px-5 py-2 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#FFD93D] mb-6 shadow-lg border border-white/30 animate-bounce">
-          <Sparkles className="h-4 w-4" />
-          <span>Join {stats.subscriberCount} Happy Families Worldwide</span>
-        </div>
+        <div className="w-full rounded-[40px] bg-white/10 backdrop-blur-2xl border-2 border-white/30 p-8 sm:p-12 lg:p-16 shadow-[0_25px_60px_rgba(0,0,0,0.3)]">
+          {/* Top Celebration Badge */}
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-md px-5 py-2 text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#FFD93D] mb-6 shadow-lg border border-white/30 animate-bounce">
+            <Sparkles className="h-4 w-4" />
+            <span>Join {stats.subscriberCount} Happy Families Worldwide</span>
+          </div>
 
-        {/* Heading */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6 drop-shadow-2xl">
-          Ready for More <br />
-          <span className="text-[#FFD93D]">Fun Learning?</span>
-        </h2>
+          {/* Heading */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6 drop-shadow-2xl">
+            Ready for More <br />
+            <span className="text-[#FFD93D]">Fun Learning?</span>
+          </h2>
 
-        {/* Text */}
-        <p className="max-w-3xl text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 font-medium leading-relaxed mb-10 drop-shadow-md">
-          Join thousands of families enjoying fun-filled Hindi nursery rhymes, educational
-          songs and Chintu&apos;s exciting adventures every week.
-        </p>
+          {/* Text */}
+          <p className="max-w-3xl mx-auto text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 font-medium leading-relaxed mb-10 drop-shadow-md">
+            Join thousands of families enjoying fun-filled Hindi nursery rhymes, educational
+            songs and Chintu&apos;s exciting adventures every week.
+          </p>
 
-        {/* Large Subscribe Button */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md">
-          <button
-            onClick={handleSubscribe}
-            className="btn-3d-red w-full sm:w-auto px-8 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 text-base sm:text-lg md:text-xl lg:text-2xl font-black flex items-center justify-center gap-3 cursor-pointer shadow-2xl transition-transform hover:scale-105"
-          >
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#FF4D4D] text-sm">
-              🔴
-            </span>
-            <span>Subscribe on YouTube</span>
-          </button>
-        </div>
+          {/* Large Subscribe Button */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto">
+            <button
+              onClick={handleSubscribe}
+              className="btn-3d-red w-full sm:w-auto px-8 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 text-base sm:text-lg md:text-xl lg:text-2xl font-black flex items-center justify-center gap-3 cursor-pointer shadow-2xl transition-transform hover:scale-105"
+            >
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#FF4D4D] text-sm">
+                🔴
+              </span>
+              <span>Subscribe on YouTube</span>
+            </button>
+          </div>
 
-        {/* Supporting trust badges below CTA */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs sm:text-sm font-extrabold text-white/90">
-          <span>✓ 100% Free &amp; Safe</span>
-          <span>✓ New 4K Videos Weekly</span>
-          <span>✓ Loved by Preschool Kids</span>
+          {/* Supporting trust badges below CTA */}
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs sm:text-sm font-extrabold text-white/90">
+            <span>✓ 100% Free &amp; Safe</span>
+            <span>✓ New 4K Videos Weekly</span>
+            <span>✓ Loved by Preschool Kids</span>
+          </div>
         </div>
       </div>
     </section>

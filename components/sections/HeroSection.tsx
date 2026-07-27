@@ -54,6 +54,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           className="block md:hidden object-cover object-top"
         />
         <div className="absolute inset-0 bg-radial from-transparent via-[#0F1123]/40 to-[#0F1123]/80" />
+        {/* Ambient bottom transition wash into playground UI */}
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#FFFDF7] via-[#FFD93D]/20 to-transparent pointer-events-none z-10" />
       </div>
 
       {/* Hero Action Buttons (Subscribe Now & Watch Videos) */}
@@ -66,8 +68,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </button>
       </div>
 
-      {/* Floating Live YouTube Stats Bar */}
-      <div className="absolute bottom-10 sm:bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-wrap items-center justify-center gap-2 sm:gap-4 px-4 sm:px-6 py-2.5 rounded-full bg-[#0F1123]/80 backdrop-blur-xl border border-white/20 shadow-2xl">
+      {/* Floating Live YouTube Stats Bar with Rainbow Glow */}
+      <div className="absolute bottom-10 sm:bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-wrap items-center justify-center gap-2 sm:gap-4 px-4 sm:px-6 py-2.5 rounded-full bg-[#0F1123]/85 backdrop-blur-xl border-2 border-[#FFD93D]/60 shadow-[0_0_35px_rgba(255,217,61,0.35)] hover:scale-105 transition-all duration-300">
         <span className="flex items-center gap-1.5 text-xs sm:text-sm font-black text-white">
           <span>❤️</span>
           <span className="text-[#FFD93D]">{stats.subscriberCount}</span>

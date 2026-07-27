@@ -62,12 +62,17 @@ export const TrustSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative py-14 sm:py-16 md:py-20 lg:py-24 xl:py-28 bg-[#FFFDF7] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-14 sm:py-16 md:py-20 lg:py-24 xl:py-28 bg-gradient-to-br from-[#FFFDF7] via-[#FFF9EB] through-[#EFF6FF]/60 to-[#FFF5F5]/60 overflow-hidden">
+      {/* Decorative Floating Gradient Blur Orbs */}
+      <div className="absolute top-10 left-[10%] w-72 h-72 rounded-full bg-[#FFD93D]/20 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-[15%] w-80 h-80 rounded-full bg-[#3B82F6]/15 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-[5%] w-64 h-64 rounded-full bg-[#FF4D4D]/15 blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#FF4D4D]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#FF4D4D] mb-3">
-            <CheckCircle2 className="h-4 w-4" />
+          <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#FF4D4D]/15 to-[#FFD93D]/25 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#FF4D4D] mb-3 ring-1 ring-[#FF4D4D]/20 shadow-sm">
+            <CheckCircle2 className="h-4 w-4 text-[#FF4D4D]" />
             <span>Why Parents &amp; Families Trust Us</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#1F2937] tracking-tight leading-tight">
@@ -90,6 +95,8 @@ export const TrustSection: React.FC = () => {
                 key={item.title}
                 className={`group relative flex flex-col rounded-3xl bg-white p-4 lg:p-6 border-2 ${item.borderColor} shadow-lg transition-all duration-300 `}
               >
+                {/* Rainbow Card Top Accent */}
+                <div className={`absolute top-0 left-6 right-6 h-1.5 rounded-b-full bg-gradient-to-r ${item.color}`} />
                 <div className="flex items-center mb-4 gap-3 sm:gap-4">
                   {/* Icon wrapper */}
                   <div

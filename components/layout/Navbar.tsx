@@ -53,10 +53,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
-        ? "bg-white/85 backdrop-blur-xl border-b border-[#FFD93D]/30 shadow-lg py-3"
+        ? "bg-white/85 backdrop-blur-xl border-b-2 border-[#FFD93D]/40 shadow-xl shadow-[#3B82F6]/5 py-2.5"
         : "bg-transparent py-5"
         }`}
     >
+      {/* 3-Color Rainbow Top Accent Strip */}
+      {isScrolled && (
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#FF4D4D] via-[#FFD93D] via-[#22C55E] to-[#3B82F6]" />
+      )}
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Brand Logo */}
@@ -69,7 +74,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
               alt="logo"
               width={50}
               height={50}
-              className="object-contain"
+              className="object-contain transition-transform duration-300 group-hover:scale-105"
             />
             <div className="flex flex-col">
               <span className={`font-extrabold text-lg sm:text-xl lg:text-2xl leading-none tracking-tight transition-colors ${isScrolled ? "text-[#1F2937]" : "text-white"
@@ -84,13 +89,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-0.5 lg:gap-1.5 xl:gap-2">
+          <nav className="hidden md:flex items-center gap-1 lg:gap-2">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className={`px-2.5 py-1.5 lg:px-3.5 lg:py-2 rounded-full text-xs lg:text-sm font-bold transition-all ${isScrolled
-                  ? "text-zinc-600 hover:bg-[#FFD93D]/20 hover:text-[#1F2937]"
+                className={`px-3 py-1.5 lg:px-4 lg:py-2 rounded-full text-xs lg:text-sm font-bold transition-all ${isScrolled
+                  ? "text-zinc-700 hover:bg-gradient-to-r hover:from-[#FF4D4D]/10 hover:via-[#FFD93D]/20 hover:to-[#3B82F6]/10 hover:text-[#FF4D4D]"
                   : "text-white hover:bg-white/20 hover:text-[#FFD93D] drop-shadow-sm"
                   }`}
               >
@@ -101,7 +106,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
 
           {/* Right Side: Subscribe CTA + Stats */}
           <div className="hidden lg:flex items-center gap-3">
-            <div className={`hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold shadow-sm ${isScrolled ? "bg-[#FF4D4D]/10 text-[#FF4D4D] border border-[#FF4D4D]/20" : "bg-white/20 text-white backdrop-blur-md"
+            <div className={`hidden xl:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-extrabold shadow-sm ${isScrolled ? "bg-gradient-to-r from-[#FF4D4D]/10 to-[#FFD93D]/15 text-[#FF4D4D] border border-[#FF4D4D]/20" : "bg-white/20 text-white backdrop-blur-md"
               }`}>
               <span>❤️</span>
               <span>{stats.subscriberCount} Subs</span>
@@ -133,14 +138,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
 
         {/* Mobile Navigation Dropdown */}
         {isMobileMenuOpen && (
-          <div className="mt-4 rounded-3xl bg-[#FFFDF7] p-4 shadow-2xl border-2 border-[#FFD93D] md:hidden animate-in slide-in-from-top-3 duration-200">
+          <div className="mt-4 rounded-3xl bg-gradient-to-b from-[#FFFDF7] to-[#FFF9E6] p-4 shadow-2xl border-2 border-[#FFD93D] md:hidden animate-in slide-in-from-top-3 duration-200">
             <nav className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="rounded-2xl px-4 py-1 text-base font-bold text-[#1F2937] hover:bg-[#FFD93D]/30 hover:text-[#FF4D4D] transition-colors"
+                  className="rounded-2xl px-4 py-2 text-base font-bold text-[#1F2937] hover:bg-gradient-to-r hover:from-[#FF4D4D]/15 hover:via-[#FFD93D]/20 hover:to-[#3B82F6]/15 hover:text-[#FF4D4D] transition-all"
                 >
                   {link.name}
                 </a>

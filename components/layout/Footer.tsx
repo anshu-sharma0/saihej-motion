@@ -32,9 +32,9 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer id="footer" className="relative bg-[#1F2937] text-white pt-16 pb-12 overflow-hidden border-t-8 border-[#FFD93D]">
-      {/* Decorative top sparkles */}
-      <div className="absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-[#FF4D4D] via-[#FFD93D] to-[#3B82F6]" />
+    <footer id="footer" className="relative bg-gradient-to-b from-[#1E2530] via-[#1A202C] to-[#0F131A] text-white pt-16 pb-12 overflow-hidden">
+      {/* Dynamic 4-Color Rainbow Top Accent Strip */}
+      <div className="absolute top-0 right-0 left-0 h-2 bg-gradient-to-r from-[#FF4D4D] via-[#FFD93D] via-[#22C55E] to-[#3B82F6]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top 4-Column Grid */}

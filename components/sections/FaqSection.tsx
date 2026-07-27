@@ -38,13 +38,25 @@ export const FaqSection: React.FC = () => {
     setOpenIndex(openIndex === idx ? null : idx);
   };
 
+  const accentBorderColors = [
+    "border-l-[#FF4D4D]",
+    "border-l-[#3B82F6]",
+    "border-l-[#FFD93D]",
+    "border-l-[#22C55E]",
+    "border-l-[#EC4899]",
+  ];
+
   return (
-    <section id="faq" className="relative py-8  md:py-12 lg:py-16 bg-[#FFFDF7] overflow-hidden">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="relative py-12 md:py-16 lg:py-20 bg-gradient-playground-blue overflow-hidden">
+      {/* Decorative Ambient Background Orbs */}
+      <div className="absolute top-1/3 left-[5%] w-72 h-72 rounded-full bg-[#FFD93D]/20 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/3 right-[5%] w-80 h-80 rounded-full bg-[#3B82F6]/15 blur-3xl pointer-events-none" />
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#FF4D4D]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#FF4D4D] mb-3">
-            <HelpCircle className="h-4 w-4" />
+          <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#FF4D4D]/15 to-[#3B82F6]/15 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#FF4D4D] mb-3 ring-1 ring-[#FF4D4D]/20 shadow-sm">
+            <HelpCircle className="h-4 w-4 text-[#FF4D4D]" />
             <span>Frequently Asked Questions</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#1F2937] tracking-tight leading-tight">
@@ -60,12 +72,13 @@ export const FaqSection: React.FC = () => {
         <div className="flex flex-col gap-4">
           {faqData.map((item, idx) => {
             const isOpen = openIndex === idx;
+            const leftBorder = accentBorderColors[idx % accentBorderColors.length];
             return (
               <div
                 key={item.question}
                 className={`rounded-3xl border-2 transition-all duration-300 overflow-hidden ${isOpen
-                  ? "bg-white border-[#FF4D4D] shadow-xl"
-                  : "bg-white border-zinc-200/80 hover:border-zinc-300 shadow-sm"
+                  ? `card-glass-playground border-[#FF4D4D] border-l-8 ${leftBorder} shadow-xl`
+                  : `card-glass-playground border-zinc-200/80 border-l-8 ${leftBorder} hover:border-zinc-300 shadow-sm`
                   }`}
               >
                 <button

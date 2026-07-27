@@ -19,12 +19,17 @@ export const FeaturedVideosSection: React.FC<FeaturedVideosSectionProps> = ({
   return (
     <section
       id="featured-videos"
-      className="relative py-8 md:py-12 lg:py-16 bg-gradient-to-b from-[#FFFDF7] via-[#FFF9EB] to-[#FFFDF7] overflow-hidden"
+      className="relative py-12 md:py-16 lg:py-20 bg-gradient-playground-blue overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Decorative Ambient Background Orbs */}
+      <div className="absolute top-1/4 right-[10%] w-80 h-80 rounded-full bg-[#3B82F6]/15 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 left-[10%] w-72 h-72 rounded-full bg-[#FFD93D]/25 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full bg-[#FF4D4D]/10 blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Heading - Centered */}
         <div className="mb-10 sm:mb-14 lg:mb-16 text-center">
-          <div className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FFD93D]/30 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#D97706] mb-3">
+          <div className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#FFD93D]/30 to-[#FF4D4D]/20 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#D97706] mb-3 ring-1 ring-[#D97706]/30 shadow-sm">
             <Sparkles className="h-4 w-4 text-[#D97706]" />
             <span>Watch • Sing • Enjoy</span>
           </div>
@@ -48,8 +53,11 @@ export const FeaturedVideosSection: React.FC<FeaturedVideosSectionProps> = ({
             <div
               key={video.title}
               onClick={() => onSelectVideo(video)}
-              className="group relative flex flex-col h-full rounded-3xl bg-white border-2 border-zinc-200/80 shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#FF4D4D]"
+              className="group relative flex flex-col h-full rounded-3xl card-glass-playground overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#3B82F6]"
             >
+              {/* Rainbow Card Top Accent */}
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#FF4D4D] via-[#FFD93D] to-[#3B82F6] z-10" />
+
               {/* Thumbnail */}
               <div className="relative overflow-hidden aspect-video w-full bg-zinc-900">
                 {video.thumbnailUrl ? (

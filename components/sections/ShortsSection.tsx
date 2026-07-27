@@ -15,20 +15,21 @@ export const ShortsSection: React.FC<ShortsSectionProps> = ({ onSelectShort }) =
   const { shorts } = useYouTube();
 
   return (
-    <section className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-b from-[#FFFDF7] via-[#FFF5F0] to-[#FFFDF7] overflow-hidden">
+    <section className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-playground-warm overflow-hidden">
       {/* Decorative floating blobs */}
-      <div className="absolute top-10 right-10 w-72 h-72 bg-[#FF4D4D]/10 rounded-full blur-3xl opacity-60 pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-80 h-80 bg-[#3B82F6]/10 rounded-full blur-3xl opacity-60 pointer-events-none" />
+      <div className="absolute top-10 right-10 w-80 h-80 bg-[#FF4D4D]/15 rounded-full blur-3xl opacity-70 pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-80 h-80 bg-[#3B82F6]/15 rounded-full blur-3xl opacity-70 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/3 w-72 h-72 bg-[#FFD93D]/20 rounded-full blur-3xl opacity-70 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Heading - Centered */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#FF4D4D]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#FF4D4D] mb-3 ring-1 ring-[#FF4D4D]/20">
-            <Sparkles className="h-4 w-4" />
+          <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#FF4D4D]/15 to-[#FFD93D]/20 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#FF4D4D] mb-3 ring-1 ring-[#FF4D4D]/30 shadow-sm">
+            <Sparkles className="h-4 w-4 text-[#FF4D4D]" />
             <span>Quick 60‑Second Learning</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#1F2937] tracking-tight leading-tight">
-            Trending <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF4D4D] to-[#FF8A8A]">Shorts</span>
+            Trending <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF4D4D] via-[#FFD93D] to-[#3B82F6]">Shorts</span>
           </h2>
           <p className="mt-4 text-sm sm:text-base md:text-lg lg:text-xl text-zinc-600 font-medium leading-relaxed">
             Bite-sized 4K Hindi nursery rhyme clips and fun dance challenges for instant smiles!
@@ -47,10 +48,11 @@ export const ShortsSection: React.FC<ShortsSectionProps> = ({ onSelectShort }) =
             <div
               key={short.title}
               onClick={() => onSelectShort && onSelectShort(short)}
-              className="group relative flex flex-col h-full rounded-3xl bg-white border-2 border-zinc-200/80 shadow-md overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#FF4D4D]/20 hover:border-[#FF4D4D]"
+              className="group relative flex flex-col h-full rounded-3xl p-[2.5px] bg-gradient-to-b from-[#FF4D4D] via-[#FFD93D] to-[#3B82F6] shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#FF4D4D]/25"
             >
-              {/* Vertical 9:16 Thumbnail */}
-              <div className="relative overflow-hidden aspect-[9/16] w-full bg-zinc-900">
+              <div className="flex flex-col h-full w-full rounded-[21px] bg-white overflow-hidden">
+                {/* Vertical 9:16 Thumbnail */}
+                <div className="relative overflow-hidden aspect-[9/16] w-full bg-zinc-900">
                 {short.thumbnailUrl ? (
                   <img
                     src={short.thumbnailUrl}
@@ -91,6 +93,7 @@ export const ShortsSection: React.FC<ShortsSectionProps> = ({ onSelectShort }) =
                   </h3>
                 </div>
               </div>
+            </div>
             </div>
           ))}
         </Carousel>

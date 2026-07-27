@@ -90,12 +90,16 @@ export const WhyParentsLoveUsSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative py-8  md:py-12 lg:py-16 bg-[#FFFDF7] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-12 md:py-16 lg:py-20 bg-gradient-sunset-yellow overflow-hidden">
+      {/* Decorative Ambient Glowing Orbs */}
+      <div className="absolute top-12 right-[8%] w-72 h-72 rounded-full bg-[#FF4D4D]/15 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-12 left-[8%] w-80 h-80 rounded-full bg-[#FFD93D]/20 blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Heading */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 lg:mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#FF4D4D]/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#FF4D4D] mb-3">
-            <Heart className="h-4 w-4 fill-current" />
+          <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#FF4D4D]/15 to-[#FFD93D]/25 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#FF4D4D] mb-3 ring-1 ring-[#FF4D4D]/20 shadow-sm">
+            <Heart className="h-4 w-4 fill-current text-[#FF4D4D]" />
             <span>Parent Testimonial &amp; Standards</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#1F2937] tracking-tight leading-tight">
@@ -114,10 +118,13 @@ export const WhyParentsLoveUsSection: React.FC = () => {
             return (
               <div
                 key={reason.title}
-                className="group relative flex flex-col rounded-3xl bg-white p-5 sm:p-6 lg:p-6 xl:p-7 border-2 border-zinc-200/80 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#FF4D4D]"
+                className="group relative flex flex-col rounded-3xl card-glass-playground p-5 sm:p-6 lg:p-6 xl:p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#FF4D4D]"
               >
+                {/* Rainbow Card Top Accent */}
+                <div className={`absolute top-0 left-6 right-6 h-1 rounded-b-full bg-gradient-to-r ${reason.color}`} />
+
                 {/* Top Badge */}
-                <span className="self-start rounded-full bg-zinc-100 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-zinc-600 mb-4">
+                <span className="self-start rounded-full bg-[#FFD93D]/30 border border-[#FFD93D]/40 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-[#1F2937] mb-4">
                   {reason.badge}
                 </span>
 
