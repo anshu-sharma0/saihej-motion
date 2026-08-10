@@ -37,7 +37,7 @@ export const Footer: React.FC = () => {
     { name: "Videos", href: "#featured-videos" },
     { name: "Playlists", href: "#playlists" },
     { name: "About Chintu", href: "#chintu" },
-    { name: "FAQ", href: "#faq" },
+    // { name: "FAQ", href: "#faq" },
     { name: "Contact", href: "#footer" },
   ];
 
