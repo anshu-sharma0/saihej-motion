@@ -1,37 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  Heart,
-  Mail, Sparkles
-} from "lucide-react";
+import { Heart, Mail, Sparkles, Code2 } from "lucide-react";
 import Image from "next/image";
-import { YouTubeIcon, InstagramIcon } from "../ui/SocialIcons";
+import { YouTubeIcon, InstagramIcon, WhatsAppIcon } from "../ui/SocialIcons";
 
 export const Footer: React.FC = () => {
-  const [copiedEmail, setCopiedEmail] = useState(false);
-
-  const handleCopyEmail = (email: string) => {
-    try {
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(email);
-      } else {
-        const textArea = document.createElement("textarea");
-        textArea.value = email;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textArea);
-      }
-      setCopiedEmail(true);
-      setTimeout(() => {
-        setCopiedEmail(false);
-      }, 2500);
-    } catch (err) {
-      console.error("Failed to copy email:", err);
-    }
-  };
-
   const quickLinks = [
     { name: "Home", href: "#hero" },
     { name: "Videos", href: "#featured-videos" },
@@ -57,6 +31,9 @@ export const Footer: React.FC = () => {
     { name: "😂 Funny Kids Shorts", href: "#playlists" },
     { name: "🎉 Festival Songs", href: "#playlists" },
   ];
+
+  const whatsappMessage = encodeURIComponent("Hi Akshat, I want to get a website designed & developed.");
+  const whatsappUrl = `https://wa.me/9177172144100?text=${whatsappMessage}`;
 
   return (
     <footer id="footer" className="relative bg-linear-to-b from-[#1E2530] via-[#1A202C] to-[#0F131A] text-white pt-12 pb-8 overflow-hidden">
@@ -210,12 +187,32 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Tagline */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-bold text-zinc-400">
-          <p>
+        {/* Bottom Bar: Copyright, Developer Attribution & Tagline */}
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-bold text-zinc-400">
+          <p className="text-center md:text-left">
             © {new Date().getFullYear()} <span className="text-white">Saihej Motion</span>. All rights reserved.
-            Official YouTube Kids Entertainment Brand.
           </p>
+
+          {/* Developer Attribution Badge with WhatsApp Link */}
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Chat on WhatsApp with Akshat to get a website built"
+            className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-800/90 border border-emerald-500/40 text-zinc-300 shadow-sm hover:border-emerald-400 hover:text-white transition-all duration-300 group cursor-pointer"
+          >
+            <Code2 className="w-3.5 h-3.5 text-[#FFD93D] group-hover:rotate-12 transition-transform" />
+            <span>
+              Designed &amp; Developed by{" "}
+              <span className="text-white font-extrabold underline decoration-[#FF4D4D] underline-offset-2 group-hover:text-[#FFD93D] transition-colors">
+                Akshat
+              </span>
+            </span>
+            <span className="flex items-center gap-1 text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30 group-hover:bg-emerald-500/20 transition-colors">
+              <WhatsAppIcon className="w-3 h-3 text-emerald-400" />
+              <span>WhatsApp</span>
+            </span>
+          </a>
 
           <div className="flex items-center gap-2 text-zinc-400">
             <span>Made with</span>
