@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Play, Sparkles, Menu, X, Heart } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import confetti from "canvas-confetti";
 import { YouTubeIcon } from "../ui/SocialIcons";
 import { useYouTube } from "../../context/YouTubeContext";
