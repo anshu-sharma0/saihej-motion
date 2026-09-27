@@ -1,22 +1,26 @@
 import { NextResponse } from "next/server";
 import { getYouTubeChannelData } from "../../../lib/youtube";
 
-// Revalidate server cache every 5 minutes (300 seconds)
-export const revalidate = 300;
+// Force dynamic execution so Next.js fetches fresh YouTube stats on every API call
+export const dynamic = "force-dynamic";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const data = await getYouTubeChannelData();
+    const { searchParams } = new URL(request.url);
+    const forceRefresh = searchParams.get("refresh") === "true";
+    const data = await getYouTubeChannelData(forceRefresh);
     return NextResponse.json(data, {
       status: 200,
       headers: {
-        "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+        "Cache-Control": forceRefresh
+          ? "no-store, max-age=0"
+          : "public, s-maxage=60, stale-while-revalidate=120",
       },
     });
   } catch (error) {
     console.error("Error in /api/youtube route:", error);
     // Even if route crashes, getYouTubeChannelData() handles fallback gracefully
-    const fallbackData = await getYouTubeChannelData();
+    const fallbackData = await getYouTubeChannelData(false);
     return NextResponse.json(fallbackData, { status: 200 });
   }
 }

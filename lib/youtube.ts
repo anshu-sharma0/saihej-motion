@@ -68,13 +68,14 @@ export interface YouTubePlaylistItem {
 }
 
 // Fallback data representing @SaihejMotion YouTube Kids Channel with real videoIds and thumbnails
+// Fallback data representing @SaihejMotion YouTube Kids Channel with real videoIds and thumbnails
 const FALLBACK_STATS: YouTubeStats = {
-  subscriberCount: "1.16K+",
-  rawSubscribers: 1160,
-  videoCount: "252+",
-  rawVideos: 252,
-  viewCount: "107K+",
-  rawViews: 107400,
+  subscriberCount: "1.46K+",
+  rawSubscribers: 1460,
+  videoCount: "293+",
+  rawVideos: 293,
+  viewCount: "152K+",
+  rawViews: 152000,
 };
 
 const FALLBACK_FEATURED_VIDEOS: VideoModalData[] = [
@@ -356,7 +357,7 @@ export function formatDuration(isoDuration: string): string {
  * Checks if a video is a YouTube Short based on title or duration
  */
 export function isShortVideo(title: string, durationStr: string): boolean {
-  if (title && title.toLowerCase().includes("#short")) return true;
+  if (title && title.toLowerCase().includes("short")) return true;
   if (!durationStr) return false;
   const parts = durationStr.split(":").map(Number);
   if (parts.length === 2 && parts[0] === 0) return true; // e.g. 0:45
@@ -380,22 +381,39 @@ export function getBestThumbnailUrl(snippet: YouTubeSnippet | undefined, videoId
 /**
  * Helper to fetch detailed stats and snippet information for a list of video IDs
  */
-async function fetchVideoDetails(videoIds: string[], apiKey: string): Promise<VideoModalData[]> {
+async function fetchVideoDetails(videoIds: string[], apiKey: string, forceRefresh: boolean = false): Promise<VideoModalData[]> {
   if (!videoIds || videoIds.length === 0) return [];
   const detailsUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${videoIds.join(",")}&key=${apiKey}`;
-  const detailsRes = await fetch(detailsUrl, { next: { revalidate: 3600 } });
+  const fetchOptions: RequestInit = forceRefresh
+    ? { cache: "no-store" }
+    : { next: { revalidate: 60 } };
+
+  const detailsRes = await fetch(detailsUrl, fetchOptions);
   if (!detailsRes.ok) return [];
 
   const detailsJson = await detailsRes.json();
   return (detailsJson.items || []).map((v: YouTubeVideoItem) => {
     const rawViews = parseInt(v.statistics?.viewCount || "15000", 10);
     const date = new Date(v.snippet?.publishedAt || Date.now());
-    const diffDays = Math.max(1, Math.floor((Date.now() - date.getTime()) / (1000 * 60 * 60 * 24)));
-    let uploadDate = `${diffDays} days ago`;
-    if (diffDays > 30) {
-      uploadDate = `${Math.floor(diffDays / 30)} months ago`;
-    } else if (diffDays > 7) {
-      uploadDate = `${Math.floor(diffDays / 7)} weeks ago`;
+    const diffMs = Date.now() - date.getTime();
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+    let uploadDate = "Today";
+    if (diffHours < 1) {
+      uploadDate = "Just now";
+    } else if (diffHours < 24) {
+      uploadDate = `${diffHours} hours ago`;
+    } else if (diffDays === 1) {
+      uploadDate = "Yesterday";
+    } else if (diffDays < 7) {
+      uploadDate = `${diffDays} days ago`;
+    } else if (diffDays < 30) {
+      const weeks = Math.floor(diffDays / 7);
+      uploadDate = `${weeks} week${weeks > 1 ? "s" : ""} ago`;
+    } else {
+      const months = Math.floor(diffDays / 30);
+      uploadDate = `${months} month${months > 1 ? "s" : ""} ago`;
     }
 
     const duration = formatDuration(v.contentDetails?.duration || "");
@@ -418,7 +436,7 @@ async function fetchVideoDetails(videoIds: string[], apiKey: string): Promise<Vi
  * Fetches channel statistics, videos, shorts, and playlists from YouTube Data API v3
  * with seamless fallback to curated @SaihejMotion channel data.
  */
-export async function getYouTubeChannelData(): Promise<YouTubeChannelData> {
+export async function getYouTubeChannelData(forceRefresh: boolean = false): Promise<YouTubeChannelData> {
   const apiKey = process.env.YOUTUBE_API_KEY;
   const channelId = process.env.YOUTUBE_CHANNEL_ID || "UC...";
 
@@ -433,18 +451,22 @@ export async function getYouTubeChannelData(): Promise<YouTubeChannelData> {
     };
   }
 
+  const fetchOptions: RequestInit = forceRefresh
+    ? { cache: "no-store" }
+    : { next: { revalidate: 60 } };
+
   try {
     // 1. Fetch channel statistics
     const statsUrl = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`;
-    const statsRes = await fetch(statsUrl, { next: { revalidate: 3600 } });
+    const statsRes = await fetch(statsUrl, fetchOptions);
     let stats = FALLBACK_STATS;
     if (statsRes.ok) {
       const statsJson = await statsRes.json();
       const channelItem = statsJson.items?.[0];
       if (channelItem?.statistics) {
-        const rawSubscribers = parseInt(channelItem.statistics.subscriberCount || "1160", 10);
-        const rawVideos = parseInt(channelItem.statistics.videoCount || "252", 10);
-        const rawViews = parseInt(channelItem.statistics.viewCount || "107400", 10);
+        const rawSubscribers = parseInt(channelItem.statistics.subscriberCount || "1460", 10);
+        const rawVideos = parseInt(channelItem.statistics.videoCount || "293", 10);
+        const rawViews = parseInt(channelItem.statistics.viewCount || "152000", 10);
 
         stats = {
           subscriberCount: formatCount(rawSubscribers),
@@ -460,15 +482,15 @@ export async function getYouTubeChannelData(): Promise<YouTubeChannelData> {
     // 2. Fetch Popular Videos (order=viewCount)
     let featuredVideos = FALLBACK_FEATURED_VIDEOS;
     try {
-      const popUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=viewCount&type=video&maxResults=15&key=${apiKey}`;
-      const popRes = await fetch(popUrl, { next: { revalidate: 3600 } });
+      const popUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=viewCount&type=video&maxResults=30&key=${apiKey}`;
+      const popRes = await fetch(popUrl, fetchOptions);
       if (popRes.ok) {
         const popJson = await popRes.json();
         const items = popJson.items || [];
         const ids = items.map((i: YouTubeSearchItem) => i.id?.videoId || "").filter(Boolean);
-        const fullDetails = await fetchVideoDetails(ids, apiKey);
+        const fullDetails = await fetchVideoDetails(ids, apiKey, forceRefresh);
         const onlyFullVideos = fullDetails.filter((v) => !isShortVideo(v.title, v.duration));
-        if (onlyFullVideos.length >= 4) {
+        if (onlyFullVideos.length > 0) {
           featuredVideos = onlyFullVideos.slice(0, 6);
         }
       }
@@ -480,16 +502,16 @@ export async function getYouTubeChannelData(): Promise<YouTubeChannelData> {
     let latestVideos = FALLBACK_LATEST_VIDEOS;
     let newShortsFromLatest: VideoModalData[] = [];
     try {
-      const latestUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&type=video&maxResults=15&key=${apiKey}`;
-      const latestRes = await fetch(latestUrl, { next: { revalidate: 3600 } });
+      const latestUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&type=video&maxResults=30&key=${apiKey}`;
+      const latestRes = await fetch(latestUrl, fetchOptions);
       if (latestRes.ok) {
         const latestJson = await latestRes.json();
         const items = latestJson.items || [];
         const ids = items.map((i: YouTubeSearchItem) => i.id?.videoId || "").filter(Boolean);
-        const fullDetails = await fetchVideoDetails(ids, apiKey);
+        const fullDetails = await fetchVideoDetails(ids, apiKey, forceRefresh);
         const onlyFullVideos = fullDetails.filter((v) => !isShortVideo(v.title, v.duration));
         newShortsFromLatest = fullDetails.filter((v) => isShortVideo(v.title, v.duration));
-        if (onlyFullVideos.length >= 4) {
+        if (onlyFullVideos.length > 0) {
           latestVideos = onlyFullVideos.slice(0, 6);
         }
       }
@@ -500,13 +522,13 @@ export async function getYouTubeChannelData(): Promise<YouTubeChannelData> {
     // 4. Fetch Shorts specifically from channel
     let shorts = FALLBACK_SHORTS;
     try {
-      const shortsUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&type=video&videoDuration=short&maxResults=15&key=${apiKey}`;
-      const shortsRes = await fetch(shortsUrl, { next: { revalidate: 3600 } });
+      const shortsUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&type=video&videoDuration=short&maxResults=30&key=${apiKey}`;
+      const shortsRes = await fetch(shortsUrl, fetchOptions);
       if (shortsRes.ok) {
         const shortsJson = await shortsRes.json();
         const items = shortsJson.items || [];
         const ids = items.map((i: YouTubeSearchItem) => i.id?.videoId || "").filter(Boolean);
-        const fullDetails = await fetchVideoDetails(ids, apiKey);
+        const fullDetails = await fetchVideoDetails(ids, apiKey, forceRefresh);
         const onlyShorts = fullDetails.filter((v) => isShortVideo(v.title, v.duration));
 
         // Combine and deduplicate shorts by videoId
@@ -518,7 +540,7 @@ export async function getYouTubeChannelData(): Promise<YouTubeChannelData> {
           }
         }
         const uniqueShorts = Array.from(uniqueMap.values());
-        if (uniqueShorts.length >= 4) {
+        if (uniqueShorts.length > 0) {
           shorts = uniqueShorts.slice(0, 8);
         }
       }
@@ -530,11 +552,11 @@ export async function getYouTubeChannelData(): Promise<YouTubeChannelData> {
     let playlists = FALLBACK_PLAYLISTS;
     try {
       const plUrl = `https://www.googleapis.com/youtube/v3/playlists?part=snippet,contentDetails&channelId=${channelId}&maxResults=10&key=${apiKey}`;
-      const plRes = await fetch(plUrl, { next: { revalidate: 3600 } });
+      const plRes = await fetch(plUrl, fetchOptions);
       if (plRes.ok) {
         const plJson = await plRes.json();
         const items = plJson.items || [];
-        if (items.length >= 3) {
+        if (items.length > 0) {
           playlists = items.map((item: YouTubePlaylistItem) => ({
             title: item.snippet?.title || "Saihej Motion Playlist",
             shortDescription: item.snippet?.description || "Curated collection of 4K Hindi nursery rhymes and cartoon adventures.",

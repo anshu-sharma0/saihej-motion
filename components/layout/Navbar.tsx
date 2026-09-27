@@ -59,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
     >
       {/* 3-Color Rainbow Top Accent Strip */}
       {isScrolled && (
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#FF4D4D] via-[#FFD93D] via-[#22C55E] to-[#3B82F6]" />
+        <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-[#FF4D4D] via-[#FFD93D] via-[#22C55E] to-[#3B82F6]" />
       )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -95,7 +95,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
                 key={link.name}
                 href={link.href}
                 className={`px-3 py-1.5 lg:px-4 lg:py-2 rounded-full text-xs lg:text-sm font-bold transition-all ${isScrolled
-                  ? "text-zinc-700 hover:bg-gradient-to-r hover:from-[#FF4D4D]/10 hover:via-[#FFD93D]/20 hover:to-[#3B82F6]/10 hover:text-[#FF4D4D]"
+                  ? "text-zinc-700 hover:bg-linear-to-r hover:from-[#FF4D4D]/10 hover:via-[#FFD93D]/20 hover:to-[#3B82F6]/10 hover:text-[#FF4D4D]"
                   : "text-white hover:bg-white/20 hover:text-[#FFD93D] drop-shadow-sm"
                   }`}
               >
@@ -106,7 +106,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
 
           {/* Right Side: Subscribe CTA + Stats */}
           <div className="hidden md:flex items-center gap-2 lg:gap-3">
-            <div className={`hidden xl:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-extrabold shadow-sm ${isScrolled ? "bg-gradient-to-r from-[#FF4D4D]/10 to-[#FFD93D]/15 text-[#FF4D4D] border border-[#FF4D4D]/20" : "bg-white/20 text-white backdrop-blur-md"
+            <div className={`hidden xl:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-extrabold shadow-sm ${isScrolled ? "bg-linear-to-r from-[#FF4D4D]/10 to-[#FFD93D]/15 text-[#FF4D4D] border border-[#FF4D4D]/20" : "bg-white/20 text-white backdrop-blur-md"
               }`}>
               <span>❤️</span>
               <span>{stats.subscriberCount} Subs</span>
@@ -138,14 +138,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onSubscribeClick }) => {
 
         {/* Mobile Navigation Dropdown */}
         {isMobileMenuOpen && (
-          <div className="mt-4 rounded-3xl bg-gradient-to-b from-[#FFFDF7] to-[#FFF9E6] p-4 shadow-2xl border-2 border-[#FFD93D] md:hidden animate-in slide-in-from-top-3 duration-200">
+          <div className="mt-4 rounded-3xl bg-linear-to-b from-[#FFFDF7] to-[#FFF9E6] p-4 shadow-2xl border-2 border-[#FFD93D] md:hidden animate-in slide-in-from-top-3 duration-200">
             <nav className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="rounded-2xl px-4 py-2 text-base font-bold text-[#1F2937] hover:bg-gradient-to-r hover:from-[#FF4D4D]/15 hover:via-[#FFD93D]/20 hover:to-[#3B82F6]/15 hover:text-[#FF4D4D] transition-all"
+                  className="rounded-2xl px-4 py-2 text-base font-bold text-[#1F2937] hover:bg-linear-to-r hover:from-[#FF4D4D]/15 hover:via-[#FFD93D]/20 hover:to-[#3B82F6]/15 hover:text-[#FF4D4D] transition-all"
                 >
                   {link.name}
                 </a>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from "react";
 import { YouTubeChannelData, YouTubeStats, YouTubePlaylist, formatCount } from "../lib/youtube";
 import { VideoModalData } from "../components/modals/VideoPlayerModal";
 
@@ -14,15 +14,16 @@ interface YouTubeContextType {
   isLoading: boolean;
   error: string | null;
   incrementSubscribers: () => void;
+  refreshData: (force?: boolean) => Promise<void>;
 }
 
 const DEFAULT_STATS: YouTubeStats = {
-  subscriberCount: "1.16K+",
-  rawSubscribers: 1160,
-  videoCount: "252+",
-  rawVideos: 252,
-  viewCount: "107K+",
-  rawViews: 107400,
+  subscriberCount: "1.46K+",
+  rawSubscribers: 1460,
+  videoCount: "293+",
+  rawVideos: 293,
+  viewCount: "152K+",
+  rawViews: 152000,
 };
 
 const YouTubeContext = createContext<YouTubeContextType | undefined>(undefined);
@@ -37,42 +38,35 @@ export const YouTubeProvider: React.FC<{ children: ReactNode }> = ({ children })
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    let isMounted = true;
-    async function fetchYouTubeData() {
-      try {
-        setIsLoading(true);
-        const res = await fetch("/api/youtube");
-        if (!res.ok) {
-          throw new Error(`Failed to fetch /api/youtube: ${res.statusText}`);
-        }
-        const data: YouTubeChannelData = await res.json();
-        if (isMounted && data) {
-          if (data.stats) setStats(data.stats);
-          if (data.featuredVideos) setFeaturedVideos(data.featuredVideos);
-          if (data.latestVideos) setLatestVideos(data.latestVideos);
-          if (data.shorts) setShorts(data.shorts);
-          if (data.playlists) setPlaylists(data.playlists);
-          if (typeof data.isLiveApi === "boolean") setIsLiveApi(data.isLiveApi);
-          setError(null);
-        }
-      } catch (err: unknown) {
-        console.warn("YouTubeContext fetch error, retaining default fallback data:", err);
-        if (isMounted) {
-          setError(err instanceof Error ? err.message : "Error fetching YouTube data");
-        }
-      } finally {
-        if (isMounted) {
-          setIsLoading(false);
-        }
+  const fetchYouTubeData = useCallback(async (force = false) => {
+    try {
+      setIsLoading(true);
+      const url = force ? `/api/youtube?refresh=true&t=${Date.now()}` : `/api/youtube?t=${Date.now()}`;
+      const res = await fetch(url, { cache: force ? "no-store" : "default" });
+      if (!res.ok) {
+        throw new Error(`Failed to fetch /api/youtube: ${res.statusText}`);
       }
+      const data: YouTubeChannelData = await res.json();
+      if (data) {
+        if (data.stats) setStats(data.stats);
+        if (data.featuredVideos) setFeaturedVideos(data.featuredVideos);
+        if (data.latestVideos) setLatestVideos(data.latestVideos);
+        if (data.shorts) setShorts(data.shorts);
+        if (data.playlists) setPlaylists(data.playlists);
+        if (typeof data.isLiveApi === "boolean") setIsLiveApi(data.isLiveApi);
+        setError(null);
+      }
+    } catch (err: unknown) {
+      console.warn("YouTubeContext fetch error, retaining fallback data:", err);
+      setError(err instanceof Error ? err.message : "Error fetching YouTube data");
+    } finally {
+      setIsLoading(false);
     }
-
-    fetchYouTubeData();
-    return () => {
-      isMounted = false;
-    };
   }, []);
+
+  useEffect(() => {
+    fetchYouTubeData(false);
+  }, [fetchYouTubeData]);
 
   const incrementSubscribers = () => {
     setStats((prev) => {
@@ -97,6 +91,7 @@ export const YouTubeProvider: React.FC<{ children: ReactNode }> = ({ children })
         isLoading,
         error,
         incrementSubscribers,
+        refreshData: (force = true) => fetchYouTubeData(force),
       }}
     >
       {children}
