@@ -3,6 +3,7 @@
 import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "../components/layout/Footer";
 import { HeroSection } from "../components/sections/HeroSection";
+import { RecentFestivalsSection } from "../components/sections/RecentFestivalsSection";
 import { TrustSection } from "../components/sections/TrustSection";
 import { FeaturedVideosSection } from "../components/sections/FeaturedVideosSection";
 import { WhyParentsLoveUsSection } from "../components/sections/WhyParentsLoveUsSection";
@@ -51,6 +52,9 @@ export default function Home() {
         <HeroSection
           onSubscribe={handleGlobalSubscribe}
         />
+
+        {/* 3:1 Recent Festivals Banner Section */}
+        <RecentFestivalsSection />
 
         {/* Parent Trust Cards Section */}
         <TrustSection />
