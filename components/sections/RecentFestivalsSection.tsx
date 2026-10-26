@@ -17,7 +17,7 @@ export const RecentFestivalsSection = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-linear-to-r from-[#FFD93D]/20 via-[#FF4D4D]/15 to-[#3B82F6]/20 border border-[#FFD93D]/60 text-xs sm:text-sm font-black text-[#B45309] mb-1.5 shadow-sm">
             <Sparkles className="w-4 h-4 text-[#D97706] animate-pulse" />
-            <span>FESTIVAL CELEBRATIONS & SPECIALS</span>
+            <span>DIWALI CELEBRATIONS & SPECIALS</span>
           </div>
         </div>
 
@@ -28,8 +28,8 @@ export const RecentFestivalsSection = () => {
         >
           {/* Full Banner Image */}
           <Image
-            src={"/Dussehra.png"}
-            alt={"Dussehra"}
+            src={"/Festivalbanner.webp"}
+            alt={"Festival"}
             fill
             priority
             quality={100}
@@ -57,10 +57,10 @@ export const RecentFestivalsSection = () => {
           <div className="absolute bottom-0 inset-x-0 p-4 sm:p-6 z-10 flex items-end justify-between gap-4">
             <div className="max-w-3xl">
               <h3 className="text-sm sm:text-2xl md:text-3xl font-black text-white drop-shadow-md line-clamp-1">
-                Dussehra & Diwali Specials with Chintu!
+                Happy Diwali Specials with Chintu!
               </h3>
               <p className="hidden sm:block text-xs sm:text-sm font-semibold text-white/90 drop-shadow-sm mt-0.5 line-clamp-1">
-                Bright Lights, Fireworks & Non-Stop 4K Festival Songs for Toddlers
+                Light Up Your Child's Smile with Our Latest 4K Video Collection
               </p>
             </div>
           </div>
